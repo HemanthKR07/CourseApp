@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@mui/material/Button";
 import "../Styles/M1.css";
-import bki from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\webD\\Full_stack\\Coursera\\Coursera\\src\\images\\1.png";
+import bki from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\Practice\\client\\src\\images\\1.png";
 function M1() {
   return (
     <>

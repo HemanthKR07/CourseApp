@@ -1,9 +1,9 @@
 import React from "react";
 import "../Styles/M3.css";
 import Rev from "./Review_blk";
-import p1 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\webD\\Full_stack\\Coursera\\Coursera\\src\\images\\p1.png";
-import p2 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\webD\\Full_stack\\Coursera\\Coursera\\src\\images\\p2.png";
-import p3 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\webD\\Full_stack\\Coursera\\Coursera\\src\\images\\p3.png";
+import p1 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\Practice\\client\\src\\images\\p1.png";
+import p2 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\Practice\\client\\src\\images\\p2.png";
+import p3 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\Practice\\client\\src\\images\\p3.png";
 
 function M3() {
   return (

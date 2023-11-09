@@ -1,16 +1,16 @@
 import React from "react";
 import "../Styles/M2.css";
-import l1 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\webD\\Full_stack\\Coursera\\Coursera\\src\\images\\l1.png";
-import l2 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\webD\\Full_stack\\Coursera\\Coursera\\src\\images\\l2.png";
-import l3 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\webD\\Full_stack\\Coursera\\Coursera\\src\\images\\l3.png";
-import l4 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\webD\\Full_stack\\Coursera\\Coursera\\src\\images\\l4.png";
-import l5 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\webD\\Full_stack\\Coursera\\Coursera\\src\\images\\l5.png";
-import l6 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\webD\\Full_stack\\Coursera\\Coursera\\src\\images\\l6.png";
-import l7 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\webD\\Full_stack\\Coursera\\Coursera\\src\\images\\l7.png";
-import s1 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\webD\\Full_stack\\Coursera\\Coursera\\src\\images\\s1.png";
-import s2 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\webD\\Full_stack\\Coursera\\Coursera\\src\\images\\s2.png";
-import s3 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\webD\\Full_stack\\Coursera\\Coursera\\src\\images\\s3.png";
-import s4 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\webD\\Full_stack\\Coursera\\Coursera\\src\\images\\s4.png";
+import l1 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\Practice\\client\\src\\images\\l1.png";
+import l2 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\Practice\\client\\src\\images\\l2.png";
+import l3 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\Practice\\client\\src\\images\\l3.png";
+import l4 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\Practice\\client\\src\\images\\l4.png";
+import l5 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\Practice\\client\\src\\images\\l5.png";
+import l6 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\Practice\\client\\src\\images\\l6.png";
+import l7 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\Practice\\client\\src\\images\\l7.png";
+import s1 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\Practice\\client\\src\\images\\s1.png";
+import s2 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\Practice\\client\\src\\images\\s2.png";
+import s3 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\Practice\\client\\src\\images\\s3.png";
+import s4 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\Practice\\client\\src\\images\\s4.png";
 import Mini from "./Mini_steps";
 
 function M2() {
