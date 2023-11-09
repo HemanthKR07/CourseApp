@@ -8,23 +8,22 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
 
-  function Createit() {
+  // const name = "Hemanth";
+  // const email = "Hemanth@123";
+  // const pass = "Hkr123";
+
+  function Createit(name, email, pass) {
     try {
-      const resp = fetch("/signup", {
+      const resp = fetch("http://localhost:5000/signup", {
         method: "POST",
         header: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ name, email, pass }),
       });
-
-      if (resp.status === 200) {
-        console.log("Data Successfuly sent !");
-      } else {
-        console.log(`Error Bhai ${resp.statusText}`);
-      }
+      console.log(name);
     } catch (err) {
-      console.log(`Error : ${err.message}`);
+      console.log(`Error1 : ${err.message}`);
     }
   }
 

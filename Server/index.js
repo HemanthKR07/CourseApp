@@ -1,10 +1,10 @@
 import exp from 'express';
 import mon from 'mongoose'
 import cors from 'cors';
+import bodyParser from 'body-parser';
 
 const app = exp()
 
-app.use(exp.urlencoded({extended:true}))
 app.use(exp.json())
 app.use(cors())
 
@@ -20,25 +20,30 @@ const Schema = new mon.Schema({
 
 const User = mon.model("User1", Schema)
 
+
 app.post('/signup', (req,res)=>{
-    const {name,email,pass} = req.body;
+    let {nam,mail,passw} = req.body;
 
-    const exist = User.findOne({email:email})
-
+    const exist = User.findOne({email:mail})
+    // console.log({mail})
+    console.log(passw)
     if (exist){
-        res.send("Error")
+        console.log("Error already exists")
     } else {
         User.create({
-            name : name,
-            email: email,
-            pass : pass
+            name : nam,
+            email: mail,
+            pass : passw
         }).then(()=>{
             console.log("User created !")
+        }).catch((err)=>{
+            console.log(err);
         })
+        
     }
 })
 
-app.listen(3000, ()=>{
+app.listen(5000, ()=>{
     console.log("Sever started !")
 })
 
