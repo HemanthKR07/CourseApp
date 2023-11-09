@@ -20,15 +20,6 @@ const Schema = new mon.Schema({
 
 const User = mon.model("User1", Schema)
 
-
-app.get('/LordSHIVA', (req, res)=>{
-        res.send("OM NAMA SHIVAYA")
-})
-
-// app.get('/', (req,res)=>{
-//     res.
-// })
-
 app.post('/signup', (req,res)=>{
     const {name,email,pass} = req.body;
 
