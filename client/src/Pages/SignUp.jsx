@@ -8,42 +8,24 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
 
-  async function Createit() {
+  function Createit() {
     try {
-      const data = {
-        name: name,
-        email: email,
-        pass: pass,
-      };
-      const response = await fetch("http://localhost:5173/createUser", {
+      const resp = fetch("/signup", {
         method: "POST",
-        headers: {
+        header: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
-      })
-        .then(console.log("Sending data !"))
-        .catch((e) => {
-          console.log(e);
-        });
+        body: JSON.stringify({ name, email, pass }),
+      });
 
-      if (response.ok) {
-        console.log("Successful !");
+      if (resp.status === 200) {
+        console.log("Data Successfuly sent !");
       } else {
-        console.log("Found an Error !");
+        console.log(`Error Bhai ${resp.statusText}`);
       }
-    } catch (e) {
-      console.log("Bruh : ", e);
+    } catch (err) {
+      console.log(`Error : ${err.message}`);
     }
-    // const resp = fetch("http://locahost:5173/get1", {
-    //   method: "GET",
-    // })
-    //   .then((res) => {
-    //     res.json();
-    //   })
-    //   .then((data) => {
-    //     console.log(data);
-    //   });
   }
 
   return (
