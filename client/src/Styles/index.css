@@ -1,0 +1,11 @@
+
+ body{
+  margin:0;
+  padding:0;
+  position: absolute;
+  left:50%;
+  box-sizing:border-box;
+  background-color:rgb(130, 130, 252);
+  text-align:center;
+  margin-left:-600px;
+}

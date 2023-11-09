@@ -1,0 +1,136 @@
+body{
+    margin:0;
+    box-sizing:border-box;
+    
+}
+
+.main12{
+    height:900px;
+    background-color:white;
+    margin-top:-19px;
+    margin-left:-40px;
+    width:1280px;
+}
+
+.p1{
+    margin-top:-10px;
+    padding-top:50px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:.65cm;
+}
+
+.sp1{
+    font-style: bold;
+}
+
+.logos{
+    height:150px;
+    /* background-color:aqua; */
+    margin-top:90px;
+    justify-content: center;
+    align-items: center;
+}
+
+.l{
+    width:125px;
+    margin-left:0px;
+}
+
+.l1{
+    margin-left:-10px;
+    margin-right:40px;
+}
+
+.l3{
+    margin-left:50px;
+}
+.l4{
+    height:90px;
+    width:90px;
+    position: absolute;
+    margin-left:60px;
+    margin-top:0;
+}
+
+.l5{
+    margin-left:200px;
+}
+.l6{
+    margin-left:30px;
+}
+.l7{
+    height:40px;
+    width:150px;
+    margin-left:30px;
+    margin-top:-10px;
+}
+
+.title1{
+    font-size:.88cm;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight:400;
+    padding-top:30px;
+}
+
+.p2{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:.4cm;
+    width:750px;
+    font-weight:200;
+    margin-left:270px;
+    line-height:27px;
+    margin-top:50px;
+}
+
+.steps_img{
+    margin-top:70px;
+}
+
+.s{
+    width:85px;
+    margin-left:170px;
+}
+
+.s1{
+    margin-left:0px;
+    width:70px;
+}
+
+.s4{
+    width:70px;
+}
+
+.texts{
+    display:flex;
+    margin-left:56px;
+    margin-top:7px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size:.4cm;    
+}
+.t{
+    margin-left:160px;
+    width:200px;
+}
+
+.span{
+    font-size:.4cm;
+    
+}
+.t1{
+    margin-left:130px;
+}
+.t2{
+    margin-left:90px;
+}
+.t3{
+    margin-left:170px;
+}
+.t4{
+    margin-left:140px;
+}
+.com_blk{
+    height:400px;
+    flex-wrap:wrap;
+    align-items:center;
+    display:flex;
+}
