@@ -19,7 +19,7 @@ function SignIn() {
       }),
     });
 
-    const response = data.json();
+    const response = await data.json();
   }
 
   return (

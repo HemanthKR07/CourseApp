@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken'
 const app = exp()
 app.use(exp.json())
 
-const Secret = 'hemanthkr';
+const Secret = 'yoUr_s3CrEt';
 app.use(cors())
 
 mon.connect('mongodb://localhost:27017',{
@@ -25,14 +25,25 @@ const Schema = new mon.Schema({
 
 const User = mon.model("User1", Schema)
 
+// There is still problem with Signing In process, 
+// the server is not checking in the database
+
+
+async function authentication (req,res,next){
+    const token = req.headers.Authorization.split(" ")[1]
+    const data = jwt.verify(token,Secret)
+    console.log(data)
+    next();
+}
+
 
 app.post('/signup', async (req,res)=>{
-    const info = req.body;
+    
+    const existingUser = User.findOne({email:req.body.email})
 
-    const existingUser = User.findOne({email:info.email})
-
-    if (existingUser){
-        res.json({message : "User already exist"})
+    if (existingUser === false){
+        res.status(403).json({message : "User already exist"})
+        console.log("User already exist")
     } else {
         const newU = await User.create({
             name : req.body.name,
@@ -40,31 +51,18 @@ app.post('/signup', async (req,res)=>{
             pass : req.body.pass
         }).then(()=>{
             console.log("User created !")
-            res.json({status:'ok'})
+            res.status(200).json({message : "User created"})
         })
-    
-        const token = jwt.sign({newU},Secret)
-        console.log("Token : ")
+        
+        const token = jwt.sign({newU},Secret,{expiresIn:'1h'})
         console.log(token)
+        req.headers.Authorization = + ' ' + token;
     }
-    
-
-
-    // const e = req.body.email
-    // const exist = User.findOne({email:e})
-
-    // if (exist){
-    //     console.log("Error already exists")
-    // } else {
-    
-
-    // if (newU){
-        //         console.log("User created !")
-        //     } else {
-        //         console.log("Error while creating user !")
-        // }
-    }
+}
 )
+
+// There is still problem with Signing In process, 
+// the server is not checking in the database
 
 
 app.post('/login', (req,res)=>{
@@ -73,12 +71,28 @@ app.post('/login', (req,res)=>{
     
     const UserExist = User.findOne({email:email})
     
-    if (UserExist){
-
-    }
-
-
+    if (!UserExist){
+        const token = jwt.sign({email,pass},Secret, {expiresIn:'1h'});
+        console.log("User logged in")
+        console.log(token)
+        req.headers.Authorization = + ' ' + token;
+    } else {
+        res.status(403).json({message: "Invalid credentials !"})
+        console.log("Invalid User credentials !")
+    } 
 })
+
+app.get('/getcourses', authentication, (req,res)=>{
+        console.log("Render everthing");
+        
+})
+
+app.get('/getmycourses', authentication, (req,res)=>{})
+
+app.post('/createcourse', authentication, (req,res)=>{
+    console.log("came back !")
+})
+
 
 app.listen(5000, ()=>{
     console.log("Sever started !")
