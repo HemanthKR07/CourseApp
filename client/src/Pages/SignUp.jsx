@@ -8,20 +8,17 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
 
-  // const name = "Hemanth";
-  // const email = "Hemanth@123";
-  // const pass = "Hkr123";
-
-  function Createit(name, email, pass) {
+  async function Createit(name, email, pass) {
     try {
-      const resp = fetch("http://localhost:5000/signup", {
+      const resp = await fetch("http://localhost:5000/signup", {
         method: "POST",
-        header: {
+        headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ name, email, pass }),
       });
-      console.log(name);
+
+      const data = await resp.json();
     } catch (err) {
       console.log(`Error1 : ${err.message}`);
     }
