@@ -1,9 +1,27 @@
-import React from "react";
+import { React, useState } from "react";
 import "../Styles/SignIn.css";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 
 function SignIn() {
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+
+  async function login() {
+    const data = await fetch("http://localhost:5000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        pass,
+      }),
+    });
+
+    const response = data.json();
+  }
+
   return (
     <>
       <div className="complete_si">
@@ -17,6 +35,9 @@ function SignIn() {
             id=""
             className="i1"
             placeholder="name@gmail.com"
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
           />{" "}
           <br />
           <h3 className="si_s2 si">PASSWORD</h3> <br />
@@ -26,9 +47,16 @@ function SignIn() {
             id=""
             className="i1"
             placeholder="Create Password"
+            onChange={(e) => {
+              setPass(e.target.value);
+            }}
           />
           <br />
-          <Button variant="contained" style={{ marginTop: "18px" }}>
+          <Button
+            variant="contained"
+            style={{ marginTop: "18px" }}
+            onClick={login}
+          >
             SIGN IN
           </Button>
           <br />
