@@ -3,6 +3,7 @@ import mon from 'mongoose'
 import cors from 'cors';
 import jwt from 'jsonwebtoken'
 
+// import condition from '../client/src/Pages/Nav'
 
 const app = exp()
 app.use(exp.json())
@@ -30,10 +31,16 @@ const User = mon.model("User1", Schema)
 
 
 async function authentication (req,res,next){
-    const token = req.headers.Authorization.split(" ")[1]
+    const token = req.headers("Authorization").split(" ")[1]
     const data = jwt.verify(token,Secret)
     console.log(data)
     next();
+}
+
+function UserAuthentication(req,res,next){
+    if (req.headers("Authorization")){
+        condition = true;
+    }
 }
 
 
@@ -81,6 +88,12 @@ app.post('/login', (req,res)=>{
         console.log("Invalid User credentials !")
     } 
 })
+
+app.get('/', UserAuthentication, (req,res)=>{
+        
+})
+
+
 
 app.get('/getcourses', authentication, (req,res)=>{
         console.log("Render everthing");
