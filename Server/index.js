@@ -46,9 +46,9 @@ function UserAuthentication(req,res,next){
 
 app.post('/signup', async (req,res)=>{
     
-    const existingUser = User.findOne({email:req.body.email})
+    const existingUser = await User.findOne({email:req.body.email})
 
-    if (existingUser === false){
+    if (existingUser){
         res.status(403).json({message : "User already exist"})
         console.log("User already exist")
     } else {
@@ -56,14 +56,15 @@ app.post('/signup', async (req,res)=>{
             name : req.body.name,
             email: req.body.email,
             pass : req.body.pass
-        }).then(()=>{
-            console.log("User created !")
-            res.status(200).json({message : "User created"})
         })
         
         const token = jwt.sign({newU},Secret,{expiresIn:'1h'})
         console.log(token)
-        req.headers.Authorization = + ' ' + token;
+
+        res.setHeader('Authorization', `Bearer ${token}`);
+        console.log("Updated Header")
+
+        res.status(200).json({message : "User created"})
     }
 }
 )
@@ -72,17 +73,18 @@ app.post('/signup', async (req,res)=>{
 // the server is not checking in the database
 
 
-app.post('/login', (req,res)=>{
+app.post('/login', async (req,res)=>{
     const email = req.body.email
     const pass = req.body.pass
     
-    const UserExist = User.findOne({email:email})
+    const UserExist = await User.findOne({email:email})
     
-    if (!UserExist){
+    if (UserExist){
         const token = jwt.sign({email,pass},Secret, {expiresIn:'1h'});
         console.log("User logged in")
         console.log(token)
-        req.headers.Authorization = + ' ' + token;
+        res.setHeader('Authorization', `Bearer ${token}`)
+        res.status(200).json({message:"Success"})
     } else {
         res.status(403).json({message: "Invalid credentials !"})
         console.log("Invalid User credentials !")
