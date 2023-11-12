@@ -3,6 +3,9 @@ import mon from 'mongoose'
 import cors from 'cors';
 import jwt from 'jsonwebtoken'
 
+// import { renderToString } from 'react-dom/server';
+// import Home from '../client/src/Pages/Home.jsx';
+
 // import condition from '../client/src/Pages/Nav'
 
 const app = exp()
@@ -26,9 +29,6 @@ const Schema = new mon.Schema({
 
 const User = mon.model("User1", Schema)
 
-// There is still problem with Signing In process, 
-// the server is not checking in the database
-
 
 async function authentication (req,res,next){
     const token = req.headers("Authorization").split(" ")[1]
@@ -43,11 +43,10 @@ function UserAuthentication(req,res,next){
     }
 }
 
-
 app.post('/signup', async (req,res)=>{
     
     const existingUser = await User.findOne({email:req.body.email})
-
+    
     if (existingUser){
         res.status(403).json({message : "User already exist"})
         console.log("User already exist")
@@ -57,27 +56,25 @@ app.post('/signup', async (req,res)=>{
             email: req.body.email,
             pass : req.body.pass
         })
-        
         const token = jwt.sign({newU},Secret,{expiresIn:'1h'})
         console.log(token)
-
         res.setHeader('Authorization', `Bearer ${token}`);
-        console.log("Updated Header")
 
-        res.status(200).json({message : "User created"})
+        res.redirect('http://localhost:3000/home')
+        
+        // res.redirect(302, Redirectit)
+        
+        // console.log("Updated Header")
+        // res.status(200).json({message : "User created"})
     }
-}
-)
-
-// There is still problem with Signing In process, 
-// the server is not checking in the database
+})
 
 
 app.post('/login', async (req,res)=>{
     const email = req.body.email
     const pass = req.body.pass
     
-    const UserExist = await User.findOne({email:email})
+    const UserExist = await User.findOne({email:email,pass:pass})
     
     if (UserExist){
         const token = jwt.sign({email,pass},Secret, {expiresIn:'1h'});
@@ -91,9 +88,9 @@ app.post('/login', async (req,res)=>{
     } 
 })
 
-app.get('/', UserAuthentication, (req,res)=>{
+// app.get('/', UserAuthentication, (req,res)=>{
         
-})
+// })
 
 
 
