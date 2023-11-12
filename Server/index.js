@@ -1,10 +1,15 @@
+require('@babel/register')({
+    presets: ['@babel/preset-react', '@babel/preset-env'],
+  });
+
+
 import exp from 'express';
 import mon from 'mongoose'
 import cors from 'cors';
 import jwt from 'jsonwebtoken'
 
-// import { renderToString } from 'react-dom/server';
-// import Home from '../client/src/Pages/Home.jsx';
+import ReactDOMServer from 'react-dom/server';
+import Home from '../client/src/Pages/Home.jsx';
 
 // import condition from '../client/src/Pages/Nav'
 
@@ -60,12 +65,13 @@ app.post('/signup', async (req,res)=>{
         console.log(token)
         res.setHeader('Authorization', `Bearer ${token}`);
 
-        res.redirect('http://localhost:3000/home')
-        
+        res.send(ReactDOMServer.renderToString(<Home />));
+
+        // res.redirect('http://localhost:3000/home')
         // res.redirect(302, Redirectit)
         
-        // console.log("Updated Header")
-        // res.status(200).json({message : "User created"})
+        console.log("Updated Header")
+        res.status(200).json({message : "User created"})
     }
 })
 
