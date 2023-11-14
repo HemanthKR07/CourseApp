@@ -2,16 +2,12 @@ import { React, useState } from "react";
 import "../Styles/SignUp.css";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
-// , useHistory
-import { useNavigate } from "react-router-dom";
 
 function SignUp() {
-  // const history = useHistory();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
 
-  const navigate = useNavigate();
   async function Createit(name, email, pass) {
     try {
       const resp = await fetch("http://localhost:5000/", {
@@ -24,13 +20,19 @@ function SignUp() {
 
       const data = await resp.json();
 
-      if (data.ok) {
+      if (resp.status == 200) {
         console.log("Rendering Home ");
-        // history.push("/home");
-        navigate("/home");
-        resp.status(200).json({ status: "Success" });
+
+        const token = data.token;
+        localStorage.setItem("Token", token);
+        const ls = localStorage.getItem("Token");
+
+        console.log(ls);
+        // window.location.href = "/home";
+        data.status(200).json({ status: "Success" });
       } else {
         console.log("Error while rendering HOME component");
+        resp.status(404).json({ status: "Error while rendering" });
       }
     } catch (err) {
       console.log(`Error1 : ${err.message}`);

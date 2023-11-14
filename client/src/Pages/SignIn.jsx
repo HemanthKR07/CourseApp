@@ -20,6 +20,15 @@ function SignIn() {
     });
 
     const response = await data.json();
+
+    if (data.ok) {
+      window.location.href = "/home";
+      console.log("Rendering Home");
+      data.status(200).json({ message: "Success" });
+    } else {
+      console.log("Error while rendering");
+      data.status(404).json({ message: "Failed while rendering" });
+    }
   }
 
   return (
@@ -62,7 +71,7 @@ function SignIn() {
           <br />
           <h6 className="si_h6">
             Don't have an account ?{" "}
-            <Link to="/signup">
+            <Link to="/">
               <span className="si_sp1">Sign Up</span>
             </Link>
           </h6>

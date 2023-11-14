@@ -6,6 +6,14 @@ import M3 from "./M3";
 import M4_lo from "./M4_lo";
 import Foot from "./Foot";
 function Home() {
+  // const data = fetch("http://localhost:5000/help", {
+  //   method: "GET",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  // });
+
+  // const token = req.header("Authorization").split(" ")[1];
   return (
     <>
       <Nav />

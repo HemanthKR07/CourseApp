@@ -25,18 +25,18 @@ const Schema = new mon.Schema({
 const User = mon.model("User1", Schema)
 
 
-async function authentication (req,res,next){
-    const token = req.headers("Authorization").split(" ")[1]
-    const data = jwt.verify(token,Secret)
-    console.log(data)
-    next();
-}
+// async function authentication (req,res,next){
+//     const token = req.headers("Authorization").split(" ")[1]
+//     const data = jwt.verify(token,Secret)
+//     console.log(data)
+//     next();
+// }
 
-function UserAuthentication(req,res,next){
-    if (req.headers("Authorization")){
-        condition = true;
-    }
-}
+// function UserAuthentication(req,res,next){
+//     if (req.headers("Authorization")){
+//         condition = true;
+//     }
+// }
 
 app.post('/', async (req,res)=>{
     console.log("Requested !")
@@ -51,10 +51,18 @@ app.post('/', async (req,res)=>{
             email: req.body.email,
             pass : req.body.pass
         })
+       
         const token = jwt.sign({newU},Secret,{expiresIn:'1h'})
+       
         console.log(token)
+
         res.setHeader('Authorization', `Bearer ${token}`);
         console.log("Updated Header")
+        // localStorage.setItem("Token", token)
+        // const ls = localStorage.getItem("Token")
+        // console.log(ls)
+        // const dt = jwt.verify(token,Secret)
+        // console.log(dt.newU.email);
         res.status(200).json({message:"Success"})
     }
 })
@@ -78,22 +86,26 @@ app.post('/login', async (req,res)=>{
     } 
 })
 
+app.get('/help',(req,res)=>{
+    console.log("From Help")
+    res.status(200).json({msg:"Success"})
+})
 // app.get('/', UserAuthentication, (req,res)=>{
         
 // })
 
 
 
-app.get('/getcourses', authentication, (req,res)=>{
-        console.log("Render everthing");
+// app.get('/getcourses', authentication, (req,res)=>{
+//         console.log("Render everthing");
         
-})
+// })
 
-app.get('/getmycourses', authentication, (req,res)=>{})
+// app.get('/getmycourses', authentication, (req,res)=>{})
 
-app.post('/createcourse', authentication, (req,res)=>{
-    console.log("came back !")
-})
+// app.post('/createcourse', authentication, (req,res)=>{
+//     console.log("came back !")
+// })
 
 
 app.listen(5000, ()=>{
