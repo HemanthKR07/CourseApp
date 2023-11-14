@@ -2,15 +2,19 @@ import { React, useState } from "react";
 import "../Styles/SignUp.css";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
+// , useHistory
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
+  // const history = useHistory();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
 
+  const navigate = useNavigate();
   async function Createit(name, email, pass) {
     try {
-      const resp = await fetch("http://localhost:5000/signup", {
+      const resp = await fetch("http://localhost:5000/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -19,6 +23,15 @@ function SignUp() {
       });
 
       const data = await resp.json();
+
+      if (data.ok) {
+        console.log("Rendering Home ");
+        // history.push("/home");
+        navigate("/home");
+        resp.status(200).json({ status: "Success" });
+      } else {
+        console.log("Error while rendering HOME component");
+      }
     } catch (err) {
       console.log(`Error1 : ${err.message}`);
     }
@@ -92,31 +105,3 @@ function SignUp() {
 }
 
 export default SignUp;
-
-//   const data = {
-//     name: name,
-//     email: email,
-//     pass: pass,
-//   };
-//   return fetch("/signup", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(data),
-//   })
-//     .then((res) => {
-//       // if (res.ok) {
-//       // } else {
-//       //   throw new Error("Networke Problem");
-//       // }
-//       res.json();
-//       console.log("Data sent !");
-//     })
-//     .then((data) => {
-//       console.log("Success : ", data);
-//     })
-//     .catch((err) => {
-//       console.log("Error : ", err);
-//     });
-// }}
