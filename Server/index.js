@@ -1,6 +1,6 @@
-require('@babel/register')({
-    presets: ['@babel/preset-react', '@babel/preset-env'],
-  });
+// require('@babel/register')({
+//     presets: ['@babel/preset-react', '@babel/preset-env'],
+//   });
 
 
 import exp from 'express';
@@ -8,8 +8,8 @@ import mon from 'mongoose'
 import cors from 'cors';
 import jwt from 'jsonwebtoken'
 
-import ReactDOMServer from 'react-dom/server';
-import Home from '../client/src/Pages/Home.jsx';
+// import ReactDOMServer from 'react-dom/server';
+// import Home from '../client/src/Pages/Home.js';
 
 // import condition from '../client/src/Pages/Nav'
 
@@ -64,31 +64,27 @@ app.post('/signup', async (req,res)=>{
         const token = jwt.sign({newU},Secret,{expiresIn:'1h'})
         console.log(token)
         res.setHeader('Authorization', `Bearer ${token}`);
-
-        res.send(ReactDOMServer.renderToString(<Home />));
-
-        // res.redirect('http://localhost:3000/home')
-        // res.redirect(302, Redirectit)
-        
         console.log("Updated Header")
-        res.status(200).json({message : "User created"})
     }
 })
 
-app.use('^/$', (req,res)=>{
-    const html = ReactDOMServer.renderToString(<Home/>)
-    res.send(
-    <html>
-      <head>
-        <title>User Profile</title>
-      </head>
-      <body>
-        <div id="home">${html}</div>
-      </body>
-    </html>)
-})
-
-app.use(express.static(path.resolve(__dirname,"..","build")))
+        // const html = ReactDOMServer.renderToString(Home())
+        // res.status(200).send(`
+        // <html>
+        // <head>
+        //     <title>User Profile</title>
+        // </head>
+        // <body>
+        //     <div id="home">${html}</div>
+        // </body>
+        // </html>`)
+        // res.send(ReactDOMServer.renderToString(<Home />));
+        // res.redirect('http://localhost:3000/home')
+        // res.redirect(302, Redirectit)   
+        // res.status(200).json({message : "User created"})
+// app.use('^/$', (req,res)=>{
+// })
+// app.use(express.static(path.resolve(__dirname,"..","build")))
 
 app.post('/login', async (req,res)=>{
     const email = req.body.email
