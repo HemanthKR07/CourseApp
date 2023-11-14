@@ -75,6 +75,20 @@ app.post('/signup', async (req,res)=>{
     }
 })
 
+app.use('^/$', (req,res)=>{
+    const html = ReactDOMServer.renderToString(<Home/>)
+    res.send(
+    <html>
+      <head>
+        <title>User Profile</title>
+      </head>
+      <body>
+        <div id="home">${html}</div>
+      </body>
+    </html>)
+})
+
+app.use(express.static(path.resolve(__dirname,"..","build")))
 
 app.post('/login', async (req,res)=>{
     const email = req.body.email

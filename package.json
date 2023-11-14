@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@babel/preset-env": "^7.23.3",
+    "@babel/preset-react": "^7.23.3",
+    "@babel/register": "^7.22.15",
+    "ignore-styles": "^5.0.1"
+  }
+}
