@@ -28,7 +28,8 @@ function SignUp() {
         const ls = localStorage.getItem("Token");
 
         console.log(ls);
-        // window.location.href = "/home";
+
+        window.location.href = "/verification";
         data.status(200).json({ status: "Success" });
       } else {
         console.log("Error while rendering HOME component");

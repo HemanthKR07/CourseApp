@@ -57,6 +57,12 @@ app.post('/', async (req,res)=>{
         console.log(token)
 
         res.setHeader('Authorization', `Bearer ${token}`);
+        if (typeof(Storage) !== 'undefined'){
+            localStorage.setItem("Token", token)
+            console.log("Data saved in storage")
+        } else {
+            console.log("Your browser doesnt support LocalStorage")
+        }
         console.log("Updated Header")
         // localStorage.setItem("Token", token)
         // const ls = localStorage.getItem("Token")
@@ -79,6 +85,14 @@ app.post('/login', async (req,res)=>{
         console.log("User logged in")
         console.log(token)
         res.setHeader('Authorization', `Bearer ${token}`)
+
+        if (typeof(Storage) !== 'undefined'){
+            localStorage.setItem("Token", token)
+            console.log("Data saved in storage")
+} else {
+    console.log("Your browser doesnt support LocalStorage")
+}
+
         res.status(200).json({message:"Success"})
     } else {
         res.status(403).json({message: "Invalid credentials !"})
@@ -90,6 +104,10 @@ app.get('/help',(req,res)=>{
     console.log("From Help")
     res.status(200).json({msg:"Success"})
 })
+
+
+
+
 // app.get('/', UserAuthentication, (req,res)=>{
         
 // })
