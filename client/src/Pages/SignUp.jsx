@@ -3,7 +3,7 @@ import "../Styles/SignUp.css";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 
-function SignUp() {
+function SignUp({ setData }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
@@ -21,15 +21,11 @@ function SignUp() {
       const data = await resp.json();
 
       if (resp.status == 200) {
+        setData = email;
         console.log("Rendering Home ");
 
-        const token = data.token;
-        localStorage.setItem("Token", token);
-        const ls = localStorage.getItem("Token");
-
-        console.log(ls);
-
         window.location.href = "/verification";
+
         data.status(200).json({ status: "Success" });
       } else {
         console.log("Error while rendering HOME component");

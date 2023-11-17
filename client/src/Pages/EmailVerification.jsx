@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
-function EmailVerification() {
-  function getDetails() {
-    return <></>;
-  }
-
-  const [email, setEmail] = useState("");
-
+function EmailVerification({ receiveData }) {
   return (
     <>
       <div className="complete_si">
@@ -20,7 +14,7 @@ function EmailVerification() {
             name="email"
             id=""
             className="i1"
-            placeholder="name@gmail.com"
+            placeholder={receiveData}
             // onChange={(e) => {
             //   setEmail(e.target.value);
             // }}
