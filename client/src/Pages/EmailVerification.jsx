@@ -18,7 +18,7 @@ function EmailVerification({ receiveData }) {
             // onChange={(e) => {
             //   setEmail(e.target.value);
             // }}
-          />{" "}
+          />
           <br />
           <h3 className="si_s2 si">PASSWORD</h3> <br />
           <input
