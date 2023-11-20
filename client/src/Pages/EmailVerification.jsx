@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import Button from "@mui/material/Button";
+import "../Styles/EmailVerification.css";
 import { Link } from "react-router-dom";
 function EmailVerification({ receiveData }) {
   return (
@@ -14,18 +15,18 @@ function EmailVerification({ receiveData }) {
             name="email"
             id=""
             className="i1"
-            placeholder={receiveData}
             // onChange={(e) => {
             //   setEmail(e.target.value);
             // }}
+            placeholder={receiveData}
           />
           <br />
-          <h3 className="si_s2 si">PASSWORD</h3> <br />
+          <h3 className="si_s2 si rem2">PASSWORD</h3> <br />
           <input
             type="text"
             name="pass"
             id=""
-            className="i1"
+            className="i1 i2 rem2"
             placeholder="Create Password"
             // onChange={(e) => {
             //   setPass(e.target.value);
@@ -34,10 +35,10 @@ function EmailVerification({ receiveData }) {
           <br />
           <Button
             variant="contained"
-            style={{ marginTop: "18px" }}
+            style={{ marginTop: "1px" }}
             // onClick={login}
           >
-            SIGN IN
+            Generate OTP
           </Button>
           <br />
           <h6 className="si_h6">

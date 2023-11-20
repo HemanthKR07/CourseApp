@@ -8,17 +8,24 @@ import Profile from "./Profile";
 import EmailVerification from "./EmailVerification";
 function App() {
   const [data, setData] = useState("");
+  function handleReceivedData(mail) {
+    setData(mail);
+  }
   return (
     <>
       <Routes>
         <Route path="/" exact element={<SignUp />} />
         <Route path="home" element={<Home />} />
-        <Route path="signin" element={<SignIn sendData={setData} />} />
-        <Route path="profile" element={<Profile />} />
+
+        <Route
+          path="signin"
+          element={<SignIn sendData={handleReceivedData} />}
+        />
         <Route
           path="verification"
           element={<EmailVerification receiveData={data} />}
         />
+        <Route path="profile" element={<Profile />} />
       </Routes>
     </>
   );
