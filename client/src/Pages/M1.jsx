@@ -4,6 +4,9 @@ import "../Styles/M1.css";
 import bki from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\Practice\\client\\src\\images\\1.png";
 
 function M1() {
+  function toPurchase() {
+    window.location.href = "/purchaseplus";
+  }
   return (
     <>
       <div className="main11">
@@ -13,7 +16,7 @@ function M1() {
           job-ready certificate programs—all included in your subscription.
         </h5>
         <img src={bki} alt="background-image" class="bk_img" />
-        <Button id="btn" variant="outlined">
+        <Button id="btn" variant="outlined" onClick={toPurchase}>
           Try Now
         </Button>
       </div>

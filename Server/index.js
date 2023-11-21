@@ -95,10 +95,10 @@ app.post('/login', async (req,res)=>{
     } 
 })
 
-app.get('/help',(req,res)=>{
-    console.log("From Help")
-    res.status(200).json({msg:"Success"})
-})
+// app.get('/help',(req,res)=>{
+//     console.log("From Help")
+//     res.status(200).json({msg:"Success"})
+// })
 
 
 

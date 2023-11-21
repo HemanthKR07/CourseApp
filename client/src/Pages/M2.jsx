@@ -18,7 +18,7 @@ function M2() {
     <>
       <div className="main12">
         <p className="p1">
-          Learn from <span class="sp1">275+</span> leading universities and
+          Learn from <span class="sp21">275+</span> leading universities and
           companies with Coursera Plus
         </p>
         <div className="logos">

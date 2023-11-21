@@ -41,7 +41,6 @@ function M3() {
         <p className="p2_m3">
           <b>Source:</b> Coursera Learner Outcomes Survey 2020
         </p>
-        <hr />
       </div>
     </>
   );

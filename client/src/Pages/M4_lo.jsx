@@ -2,6 +2,9 @@ import React from "react";
 import "../Styles/M4_lo.css";
 
 function M4_lo() {
+  function toPurchase() {
+    window.location.href = "/purchaseplus";
+  }
   return (
     <>
       <div className="block_4">
@@ -13,7 +16,9 @@ function M4_lo() {
           job-ready certificate programs—all included in your subscription
         </p>
         <p className="p1_4">₹4,912/month, cancel anytime</p>
-        <button id="btn_4">Start 7-day Free Trial</button>
+        <button id="btn_4" onClick={toPurchase}>
+          Start 7-day Free Trial
+        </button>
         {/* link */}
         <p className="p2_4">or ₹33,220/year with 14-day money-back guarantee</p>
       </div>
