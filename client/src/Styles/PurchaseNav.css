@@ -1,0 +1,101 @@
+body{
+    margin:0;
+    padding:0;
+}
+
+
+.p_nav{
+    width:1280px;
+    height:70px;
+    background-color:rgb(255, 255, 255);
+    margin-top:-18px;
+    margin-left:-40px;
+}
+
+.ul_nav{
+    padding-top:20px;
+    list-style: none;
+    gap:40px;
+    display:flex;
+}
+
+.btn_n{
+    font-size:.45cm;
+    font-family: Raleway;
+    font-weight:600;
+    background-color:white;
+    border:0;
+    color:black;
+}
+
+.btn_n:hover {
+    color:rgb(105, 92, 92);
+}
+/* 
+.d{
+    display:flex;
+}
+
+.d1{
+    width: 0px;
+    height: 2px;
+    background: rgb(0, 0, 0);
+    position: relative;
+    animation: mymove 600ms;
+}
+.d2{
+    width: 00px;
+    height: 2px;
+    background: rgb(0, 0, 0);
+    position: relative;
+    animation: mymove2 600ms;
+}
+  */
+/* .btn_n.underline-animation .d1,
+.btn_n.underline-animation .d2{
+  animation: mymove 300ms;
+  animation: mymove2 300ms;
+
+} 
+
+.btn_n.underline-animation .d1,
+.btn_n.underline-animation .d2 {
+  animation: mymove mymove2 300ms;
+}
+
+@keyframes mymove {
+    from { width: 0px; left: 60px; }
+    to { width: 60px; left: 60px; }
+  }
+ 
+  @keyframes mymove2 {
+    from {width:0; left: 60px;}
+    to {width: 60px;left:0px} 
+  } */
+
+
+.d{
+	display:flex;
+}
+.d1 {
+  width: 60px;
+  height: 2px;
+  background: red;
+  position: relative;
+  animation: mymove 500ms;
+}
+
+.d2 {
+  width: 60px;
+  height: 2px;
+  background: blue;
+  position: relative;
+  animation: mymove 500ms;
+}
+
+@keyframes mymove {
+  from {left: 60px; width:0}
+  to {left: 0px; width:60px}
+}
+
+    

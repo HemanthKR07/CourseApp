@@ -6,6 +6,8 @@ import SignUp from "./SignUp";
 import SignIn from "./SignIn";
 import Profile from "./Profile";
 import EmailVerification from "./EmailVerification";
+import PurchasePlus from "./PurchasePlus";
+
 function App() {
   const [data, setData] = useState("");
   function handleReceivedData(mail) {
@@ -26,6 +28,7 @@ function App() {
           element={<EmailVerification receiveData={data} />}
         />
         <Route path="profile" element={<Profile />} />
+        <Route path="purchaseplus" element={<PurchasePlus />} />
       </Routes>
     </>
   );
