@@ -10,26 +10,38 @@ function SignUp({ sendData }) {
 
   async function Createit(name, email, pass) {
     try {
+      // const resp = await fetch("http://localhost:5000/", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     UserName: name,
+      //     email: email,
+      //     pass: pass,
+      //   },
+      // });
+
       const resp = await fetch("http://localhost:5000/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          UserName: name,
+          email: email,
+          pass: pass,
         },
-        body: JSON.stringify({ name, email, pass }),
       });
-
       const data = await resp.json();
 
       if (resp.status == 200) {
         console.log("Rendering Home ");
-        window.location.href = "/verification";
-        data.status(200).json({ status: "Success" });
+        // window.location.href = "/verification";
+        // data.status(200).json({ status: "Success" });
       } else {
         console.log("Error while rendering HOME component");
         resp.status(404).json({ status: "Error while rendering" });
       }
     } catch (err) {
       console.log(`Error1 : ${err.message}`);
+      sendData;
     }
   }
 

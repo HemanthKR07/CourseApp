@@ -40,22 +40,24 @@ const User = mon.model("User1", Schema)
 
 app.post('/', async (req,res)=>{
     console.log("Requested !")
-    const existingUser = await User.findOne({email:req.body.email})
+    const existingUser = await User.findOne({email:req.headers.email})
     
     if (existingUser){
         res.status(403).json({message : "User already exist"})
         console.log("User already exist")
     } else {
         const newU = await User.create({
-            name : req.body.name,
-            email: req.body.email,
-            pass : req.body.pass
+            name : req.headers.UserName,
+            email: req.headers.email,
+            pass : req.headers.pass
         })
        
         const token = jwt.sign({newU},Secret,{expiresIn:'1h'})
        
         console.log(token)
 
+        res.setHeader('Authorization', `Bearer ${token}`);
+        res.setHeader('UserName', );
         res.setHeader('Authorization', `Bearer ${token}`);
         // if (typeof Storage !== 'undefined'){
         //     localStorage.setItem("Token", token)
