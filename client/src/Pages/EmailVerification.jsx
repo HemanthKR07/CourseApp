@@ -21,17 +21,17 @@ function EmailVerification({ receiveData }) {
             placeholder={receiveData}
           />
           <br />
-          <h3 className="si_s2 si rem2">PASSWORD</h3> <br />
+          {/* <h3 className="si_s2 si rem2">PASSWORD</h3> <br />
           <input
             type="text"
             name="pass"
             id=""
             className="i1 i2 rem2"
-            placeholder="Create Password"
+            placeholder="Create Password" 
             // onChange={(e) => {
             //   setPass(e.target.value);
             // }}
-          />
+          />*/}
           <br />
           <Button
             variant="contained"
