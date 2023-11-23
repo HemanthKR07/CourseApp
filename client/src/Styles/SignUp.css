@@ -147,3 +147,33 @@ body{
     padding-left: 20px;
     color: grey;
   }
+
+
+
+#vB1{
+    fill:black;
+    background-color:white;
+    border:0px;
+    position:absolute;
+    left:20px;
+    top:30px;    
+    cursor: pointer; 
+    font-size:.5cm;  
+}
+
+#vB1:hover{
+    fill:grey;
+}
+
+.si_buttons{
+    margin-top:15px;
+}
+#si_go, #si_ca{
+    font-size:.32cm;
+    padding:4px 4px;
+    fill:rgb(47, 47, 243);
+}
+
+#si_go{
+    margin-right:20px;
+}

@@ -2,11 +2,14 @@ import { React, useState } from "react";
 import "../Styles/SignUp.css";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
+import sendMail from "../../../Server/Mail.js";
 
 function SignUp({ sendData }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
+
+  function handleMail(error, resp) {}
 
   async function Createit(name, email, pass) {
     try {
@@ -27,6 +30,7 @@ function SignUp({ sendData }) {
         if (fDiv) {
           fDiv.classList.toggle("rem1");
           sDiv.classList.toggle("rem2");
+          sendMail(handleMail);
         }
       }
 
@@ -41,6 +45,19 @@ function SignUp({ sendData }) {
     } catch (err) {
       console.log(`Error1 : ${err.message}`);
     }
+  }
+
+  function goBack() {
+    const fDiv = document.querySelector(".complete_su");
+    const sDiv = document.querySelector(".si1");
+    if (fDiv) {
+      fDiv.classList.toggle("rem1");
+      sDiv.classList.toggle("rem2");
+    }
+  }
+
+  function generateAgain() {
+    sendMail(handleMail);
   }
 
   return (
@@ -111,6 +128,20 @@ function SignUp({ sendData }) {
       <div className="si1 rem2">
         <div className="si_blk">
           <h3 className="si_title">Verification</h3>
+          <button
+            id="vB1"
+            variant="contained"
+            style={{ marginTop: "1px" }}
+            onClick={goBack}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="1.5em"
+              viewBox="0 0 448 512"
+            >
+              <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+            </svg>
+          </button>
           <p className="si_p">
             Please verify by entering the OTP sent to the email
           </p>
@@ -118,13 +149,24 @@ function SignUp({ sendData }) {
           <input type="number" name="otp" id="" className="i1" />
           <br />
           <br />
-          <Button
-            variant="contained"
-            style={{ marginTop: "1px" }}
-            // onClick={login}
-          >
-            Create Account
-          </Button>
+          <div className="si_buttons">
+            <Button
+              id="si_go"
+              variant="contained"
+              style={{ marginTop: "1px" }}
+              onClick={generateAgain}
+            >
+              Generate Again
+            </Button>
+            <Button
+              id="si_ca"
+              variant="contained"
+              style={{ marginTop: "1px" }}
+              // onClick={login}
+            >
+              Create Account
+            </Button>
+          </div>
         </div>
       </div>
     </>
