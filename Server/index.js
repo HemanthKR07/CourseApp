@@ -46,30 +46,22 @@ app.post('/', async (req,res)=>{
         res.status(403).json({message : "User already exist"})
         console.log("User already exist")
     } else {
-        const newU = await User.create({
-            name : req.headers.UserName,
-            email: req.headers.email,
-            pass : req.headers.pass
-        })
+        res.status(200).json({message:"Proceed !"})
+        // const newU = await User.create({
+        //     name : req.headers.UserName,
+        //     email: req.headers.email,
+        //     pass : req.headers.pass
+        // })
        
-        const token = jwt.sign({newU},Secret,{expiresIn:'1h'})
+        // const token = jwt.sign({newU},Secret,{expiresIn:'1h'})
        
-        console.log(token)
+        // console.log(token)
 
-        res.setHeader('Authorization', `Bearer ${token}`);
-        res.setHeader('UserName', );
-        res.setHeader('Authorization', `Bearer ${token}`);
-        // if (typeof Storage !== 'undefined'){
-        //     localStorage.setItem("Token", token)
-        //     console.log("Data saved in storage")
-        // } else {
-        //     console.log("Your browser doesnt support LocalStorage")
-        // }
-        console.log("Updated Header")
-        res.status(200).json({message:"Success"})
+        // res.setHeader('Authorization', `Bearer ${token}`);
+        // console.log("Updated Header")
+        // res.status(200).json({message:"Success"})
     }
 })
-
 
 app.post('/login', async (req,res)=>{
     const email = req.body.email

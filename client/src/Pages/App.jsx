@@ -5,7 +5,6 @@ import Home from "./Home";
 import SignUp from "./SignUp";
 import SignIn from "./SignIn";
 import Profile from "./Profile";
-import EmailVerification from "./EmailVerification";
 import PurchasePlus from "./PurchasePlus";
 
 function App() {
@@ -22,10 +21,6 @@ function App() {
         <Route
           path="signin"
           element={<SignIn sendData={handleReceivedData} />}
-        />
-        <Route
-          path="verification"
-          element={<EmailVerification receiveData={data} />}
         />
         <Route path="profile" element={<Profile />} />
         <Route path="purchaseplus" element={<PurchasePlus />} />

@@ -10,16 +10,6 @@ function SignUp({ sendData }) {
 
   async function Createit(name, email, pass) {
     try {
-      // const resp = await fetch("http://localhost:5000/", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     UserName: name,
-      //     email: email,
-      //     pass: pass,
-      //   },
-      // });
-
       const resp = await fetch("http://localhost:5000/", {
         method: "POST",
         headers: {
@@ -32,22 +22,30 @@ function SignUp({ sendData }) {
       const data = await resp.json();
 
       if (resp.status == 200) {
-        console.log("Rendering Home ");
-        // window.location.href = "/verification";
-        // data.status(200).json({ status: "Success" });
-      } else {
-        console.log("Error while rendering HOME component");
-        resp.status(404).json({ status: "Error while rendering" });
+        const fDiv = document.querySelector(".complete_su");
+        const sDiv = document.querySelector(".si1");
+        if (fDiv) {
+          fDiv.classList.toggle("rem1");
+          sDiv.classList.toggle("rem2");
+        }
       }
+
+      // if (resp.status == 200) {
+      //   console.log("Rendering Home ");
+      //   // window.location.href = "/verification";
+      //   data.status(200).json({ status: "Success" });
+      // } else {
+      //   console.log("Error while rendering HOME component");
+      //   resp.status(404).json({ status: "Error while rendering" });
+      // }
     } catch (err) {
       console.log(`Error1 : ${err.message}`);
-      sendData;
     }
   }
 
   return (
     <>
-      <div className="complete_su">
+      <div className="complete_su ">
         <div className="su_blk">
           <h3 className="su_title">Sign Up</h3>
           <p className="su_p1">
@@ -94,10 +92,9 @@ function SignUp({ sendData }) {
             style={{ marginTop: "18px" }}
             onClick={() => {
               Createit(name, email, pass);
-              sendData(email);
             }}
           >
-            SIGN UP
+            Sign Up
           </Button>
           <br />
           <h5 id="status"></h5>
@@ -107,6 +104,27 @@ function SignUp({ sendData }) {
               <span className="su_sp1">Sign In</span>
             </Link>
           </h6>
+        </div>
+      </div>
+
+      {/*  Verification Block !!!*/}
+      <div className="si1 rem2">
+        <div className="si_blk">
+          <h3 className="si_title">Verification</h3>
+          <p className="si_p">
+            Please verify by entering the OTP sent to the email
+          </p>
+          <h3 className="si_s1 si">OTP</h3> <br />
+          <input type="number" name="otp" id="" className="i1" />
+          <br />
+          <br />
+          <Button
+            variant="contained"
+            style={{ marginTop: "1px" }}
+            // onClick={login}
+          >
+            Create Account
+          </Button>
         </div>
       </div>
     </>

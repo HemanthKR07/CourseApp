@@ -7,6 +7,15 @@ body{
 .complete_su{
     height:100vh;
 }
+
+.rem1{
+    display: none;
+}
+
+.rem2{
+    display:none;
+}
+
 .su_blk{
     height:550px;
     background-color:rgb(255, 255, 255);
@@ -76,3 +85,65 @@ body{
 .su_sp1:hover{
     text-decoration:underline;
 }
+
+.si1{
+    height:160px;
+    background-color:red;
+}
+.si_blk {
+    position: absolute;
+    height: 180px;
+    background-color: rgb(255, 255, 255);
+    width: 430px;
+    margin-left: 405px;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  
+  .si_title {
+    padding-top: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 0.79cm;
+    font-weight: 300;
+  }
+  
+  .si_p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 200;
+    width: 400px;
+    margin-left: 15px;
+    font-size: 0.37cm;
+    letter-spacing: 1px;
+    line-height: 23px;
+    color: rgb(74, 69, 69);
+    margin-top: -10px;
+  }
+  
+.si {
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+      "Lucida Sans", Arial, sans-serif;
+    font-size: 0.47cm;
+    margin-left: -160px;
+    margin-top: 20px;
+    margin-bottom: -10px;
+    font-weight: 400;
+}
+.si_s1 {
+    margin-top: 30px;
+    margin-left: -220px;
+}
+  
+.si_s2 {
+    margin-left: -190px;
+}
+.i1{
+    height: 35px;
+    margin-top: 0px;
+    width: 100px;
+    margin-left: 5px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding-left: 20px;
+    color: grey;
+  }
