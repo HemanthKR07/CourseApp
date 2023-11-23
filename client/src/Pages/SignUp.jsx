@@ -2,14 +2,12 @@ import { React, useState } from "react";
 import "../Styles/SignUp.css";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
-import sendMail from "../../../Server/Mail.js";
+import nodemailer from "nodemailer";
 
-function SignUp({ sendData }) {
+function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
-
-  function handleMail(error, resp) {}
 
   async function Createit(name, email, pass) {
     try {
@@ -30,7 +28,7 @@ function SignUp({ sendData }) {
         if (fDiv) {
           fDiv.classList.toggle("rem1");
           sDiv.classList.toggle("rem2");
-          sendMail(handleMail);
+          sendMail();
         }
       }
 
@@ -56,8 +54,17 @@ function SignUp({ sendData }) {
     }
   }
 
-  function generateAgain() {
-    sendMail(handleMail);
+  async function generateAgain() {
+    const generate = await fetch("http://localhost:5000/verify", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        email: Mail,
+      },
+    });
+
+    if (generate.status === 200) {
+    }
   }
 
   return (

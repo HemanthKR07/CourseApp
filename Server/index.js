@@ -89,12 +89,42 @@ app.post('/login', async (req,res)=>{
     } 
 })
 
-// app.get('/help',(req,res)=>{
-//     console.log("From Help")
-//     res.status(200).json({msg:"Success"})
-// })
+app.post('/verify',(req,res)=>{
+        const email = req.headers.mail;
 
+        async function sendMail() {
+                function otp() {
+                let num = Math.floor(Math.random() * 1000000, 0);
+                return num.toString().padStart(6, "0");
+                }
 
+                const transporter = nodemailer.createTransport({
+                service: "gmail",
+                auth: {
+                    user: "krh7799@gmail.com",
+                    pass: "qrpadvfixkpzahbp",
+                },
+                });
+
+                const numb = otp();
+                const mailOptions = {
+                from: {
+                    name: "OTP VERIFICATION",
+                    address: "coursera@verifcation.com",
+                },
+                to: "hemanthkr0514@gmail.com",
+                subject: "OTP Verification",
+                text: `Do not share your OTP ${numb} with anyone, they can steal your data.`,
+                };
+
+                try {
+                const result = transporter.sendMail(mailOptions);
+                console.log("Mail sent successfully !");
+                } catch (error) {
+                console.log(`Error Bhai : ${error}`);
+                }
+            }
+})
 
 
 // app.get('/', UserAuthentication, (req,res)=>{
@@ -118,4 +148,3 @@ app.post('/login', async (req,res)=>{
 app.listen(5000, ()=>{
     console.log("Sever started !")
 })
-
