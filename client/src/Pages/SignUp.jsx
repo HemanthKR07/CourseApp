@@ -2,12 +2,13 @@ import { React, useState } from "react";
 import "../Styles/SignUp.css";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
-import nodemailer from "nodemailer";
 
 function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
+  const [otp, setOtp] = useState("");
+  let globalVariable = 0;
 
   async function Createit(name, email, pass) {
     try {
@@ -28,7 +29,7 @@ function SignUp() {
         if (fDiv) {
           fDiv.classList.toggle("rem1");
           sDiv.classList.toggle("rem2");
-          sendMail();
+          generateAgain();
         }
       }
 
@@ -45,6 +46,32 @@ function SignUp() {
     }
   }
 
+  async function generateAgain(email) {
+    try {
+      console.log("In GenerateAgain Block");
+      console.log(email);
+      const generate = await fetch("http://localhost:5000/verify", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          email: email,
+        },
+      });
+      if (generate.status == 200) {
+        const resp = await generate.json();
+        globalVariable = resp.otp;
+        console.log(resp.message);
+      }
+    } catch (error) {
+      console.log("Error in fetch gen req : ", error);
+    }
+
+    // if (generate.status === 200) {
+    //   const tag = document.querySelector(".si_h6");
+    //   tag.innerHTML = generate.message;
+    // }
+  }
+
   function goBack() {
     const fDiv = document.querySelector(".complete_su");
     const sDiv = document.querySelector(".si1");
@@ -54,16 +81,9 @@ function SignUp() {
     }
   }
 
-  async function generateAgain() {
-    const generate = await fetch("http://localhost:5000/verify", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        email: Mail,
-      },
-    });
-
-    if (generate.status === 200) {
+  function createAccount(otp, globalVariable) {
+    if (otp === globalVariable) {
+      console.log("Hello");
     }
   }
 
@@ -152,8 +172,17 @@ function SignUp() {
           <p className="si_p">
             Please verify by entering the OTP sent to the email
           </p>
+          <h6 className="si_h6"></h6>
           <h3 className="si_s1 si">OTP</h3> <br />
-          <input type="number" name="otp" id="" className="i1" />
+          <input
+            type="number"
+            name="otp"
+            id=""
+            className="i1"
+            onChange={(e) => {
+              setOtp(e.target.value);
+            }}
+          />
           <br />
           <br />
           <div className="si_buttons">
@@ -161,7 +190,9 @@ function SignUp() {
               id="si_go"
               variant="contained"
               style={{ marginTop: "1px" }}
-              onClick={generateAgain}
+              onClick={() => {
+                generateAgain(email);
+              }}
             >
               Generate Again
             </Button>
@@ -169,7 +200,7 @@ function SignUp() {
               id="si_ca"
               variant="contained"
               style={{ marginTop: "1px" }}
-              // onClick={login}
+              onClick={createAccount}
             >
               Create Account
             </Button>

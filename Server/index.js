@@ -2,6 +2,7 @@ import exp from 'express';
 import mon from 'mongoose'
 import cors from 'cors';
 import jwt from 'jsonwebtoken'
+import nodemailer from 'nodemailer';
 
 const app = exp()
 app.use(exp.json())
@@ -46,6 +47,7 @@ app.post('/', async (req,res)=>{
         res.status(403).json({message : "User already exist"})
         console.log("User already exist")
     } else {
+        console.log("In Else Block")
         res.status(200).json({message:"Proceed !"})
         // const newU = await User.create({
         //     name : req.headers.UserName,
@@ -63,39 +65,41 @@ app.post('/', async (req,res)=>{
     }
 })
 
-app.post('/login', async (req,res)=>{
-    const email = req.body.email
-    const pass = req.body.pass
+// app.post('/login', async (req,res)=>{
+//     const email = req.body.email
+//     const pass = req.body.pass
     
-    const UserExist = await User.findOne({email:email,pass:pass})
+//     const UserExist = await User.findOne({email:email,pass:pass})
     
-    if (UserExist){
-        const token = jwt.sign({email,pass},Secret, {expiresIn:'1h'});
-        console.log("User logged in")
-        console.log(token)
-        res.setHeader('Authorization', `Bearer ${token}`)
+//     if (UserExist){
+//         const token = jwt.sign({email,pass},Secret, {expiresIn:'1h'});
+//         console.log("User logged in")
+//         console.log(token)
+//         res.setHeader('Authorization', `Bearer ${token}`)
 
-        if (typeof(Storage) !== 'undefined'){
-            localStorage.setItem("Token", token)
-            console.log("Data saved in storage")
-} else {
-    console.log("Your browser doesnt support LocalStorage")
-}
+//         if (typeof(Storage) !== 'undefined'){
+//             localStorage.setItem("Token", token)
+//             console.log("Data saved in storage")
+// } else {
+//     console.log("Your browser doesnt support LocalStorage")
+// }
 
-        res.status(200).json({message:"Success"})
-    } else {
-        res.status(403).json({message: "Invalid credentials !"})
-        console.log("Invalid User credentials !")
-    } 
-})
+//         res.status(200).json({message:"Success"})
+//     } else {
+//         res.status(403).json({message: "Invalid credentials !"})
+//         console.log("Invalid User credentials !")
+//     } 
+// })
 
 app.post('/verify',(req,res)=>{
-        const email = req.headers.mail;
+        const email = req.headers.email
+        console.log(email)
 
         async function sendMail() {
                 function otp() {
-                let num = Math.floor(Math.random() * 1000000, 0);
-                return num.toString().padStart(6, "0");
+                        console.log("OTP Generating")
+                        let num = Math.floor(Math.random() * 1000000, 0);
+                        return num.toString().padStart(6, "0");
                 }
 
                 const transporter = nodemailer.createTransport({
@@ -105,25 +109,27 @@ app.post('/verify',(req,res)=>{
                     pass: "qrpadvfixkpzahbp",
                 },
                 });
-
                 const numb = otp();
                 const mailOptions = {
                 from: {
                     name: "OTP VERIFICATION",
-                    address: "coursera@verifcation.com",
+                    address: "krh7799@gmail.com",
                 },
-                to: "hemanthkr0514@gmail.com",
+                to: email,
                 subject: "OTP Verification",
                 text: `Do not share your OTP ${numb} with anyone, they can steal your data.`,
                 };
 
                 try {
-                const result = transporter.sendMail(mailOptions);
+                const result = await transporter.sendMail(mailOptions);
                 console.log("Mail sent successfully !");
-                } catch (error) {
+                res.status(200).json({otp:numb,message:"OTP Sent"})
+            } catch (error) {
                 console.log(`Error Bhai : ${error}`);
+                res.status(404).json({message:"OTP Failed"})
                 }
             }
+            sendMail()
 })
 
 
