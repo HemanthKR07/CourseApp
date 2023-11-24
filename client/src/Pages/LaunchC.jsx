@@ -1,4 +1,4 @@
-import React from "react";
+import { React, Link } from "react";
 import Foot from "./Foot";
 import "../Styles/LaunchC.css";
 import LaunchBlock from "./LaunchBlock";
@@ -7,7 +7,6 @@ import Button from "@mui/material/Button";
 import LaunchBlock2 from "./LaunchBlock2";
 import Img2 from "../images/createcourse2.jpg";
 import Img3 from "../images/createcourse3.jpg";
-
 function LaunchC() {
   return (
     <>
@@ -17,9 +16,9 @@ function LaunchC() {
       </style>
       <div className="l_b1">
         <NavLaunch />
-        <Button id="l_b1" variant="outlined">
-          Start Creating
-        </Button>
+        {/* <div id="l_b1">
+          <Link to="/createcourse">Start Creating</Link>
+        </div> */}
         <LaunchBlock />
         <div className="blocks2">
           <LaunchBlock2
@@ -34,9 +33,11 @@ function LaunchC() {
           />
         </div>
         <h5 className="l_h5">Are You Ready To Begin ? </h5>
+        {/* <Link to="/createcourse"> */}
         <Button id="l_b2" variant="outlined">
           Start Creating
         </Button>
+        {/* </Link> */}
       </div>
       <Foot />
     </>
