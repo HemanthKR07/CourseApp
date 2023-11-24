@@ -155,12 +155,7 @@ function SignUp() {
       <div className="si1 rem2">
         <div className="si_blk">
           <h3 className="si_title">Verification</h3>
-          <button
-            id="vB1"
-            variant="contained"
-            style={{ marginTop: "1px" }}
-            onClick={goBack}
-          >
+          <button id="vB1" style={{ marginTop: "1px" }} onClick={goBack}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="1.5em"

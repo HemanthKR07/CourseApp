@@ -16,21 +16,20 @@ body{
     display:flex;
 }
 
-.btn1{
+#pB1{
     position: absolute;
-    height:40px;
-    width:20px;
-    top:30px;
-    left:60px;
-    background-color:rgb(236, 123, 123);
+    height:60px;
+    width:30px;
+    top:20px;
+    left:40px;
+    background-color:rgb(255, 255, 255);
     border:0px;
     cursor: pointer;
 }
 
-/* #btn_arr1{
-    height:40px;
-    width:30px;
-} */
+#btn123:hover{
+    fill:grey;
+}
 
 .h3_pro{
     position: absolute;

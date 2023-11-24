@@ -28,9 +28,10 @@ function PurchasePlus() {
             <br />
             {/* <br /> */}
             <span className="pp_sp2">
-              For a limited time only, your first month of Coursera Plus for
-              only $1. With Coursera Plus you have the ultimate flexibility to
-              start new courses and move between programs at no additional cost.
+              For a limited time only, your first month of Coursera Plus you get
+              it at best price of 3999. With Coursera Plus you have the ultimate
+              flexibility to start new courses and move between programs at no
+              additional cost.
             </span>
             <br />
             <br />
@@ -41,7 +42,7 @@ function PurchasePlus() {
             </span>
           </p>
           <Button variant="contained" id="pp_btn1">
-            SAVE NOW
+            BUY NOW
           </Button>
           <div className="pp_images">
             <img src={img1} alt="" className="pp_img1 pi" />
