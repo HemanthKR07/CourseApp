@@ -6,6 +6,7 @@ import SignUp from "./SignUp";
 import SignIn from "./SignIn";
 import Profile from "./Profile";
 import PurchasePlus from "./PurchasePlus";
+import LaunchC from "./LaunchC";
 
 function App() {
   const [data, setData] = useState("");
@@ -24,6 +25,7 @@ function App() {
         />
         <Route path="profile" element={<Profile />} />
         <Route path="purchaseplus" element={<PurchasePlus />} />
+        <Route path="launchcourse" element={<LaunchC />} />
       </Routes>
     </>
   );

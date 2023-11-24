@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../Styles/Nav.css";
-import profile from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\Practice\\client\\src\\images\\Ppic.jpg";
+// import profile from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\Practice\\client\\src\\images\\Ppic.jpg";
 
 function Nav() {
   function mouseOver() {
@@ -32,7 +32,7 @@ function Nav() {
               </button>
             </li>
             <li className="li1">
-              <Link to="/profile" className="link2 l">
+              <Link to="/launchcourse" className="link2 l">
                 LAUNCH COURSE
               </Link>
             </li>

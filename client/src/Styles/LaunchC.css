@@ -1,0 +1,118 @@
+body{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+.l_b1{
+    /* height:700px; */
+    width:1271.5px;
+    margin-left:-40px;
+    background-color:white;
+
+}
+
+.l_img1{
+    height:240px;
+    width:240px;
+    margin-top:10px;
+    margin-left:-460px;
+}
+
+
+.create_blk{
+    height:300px;
+    width:900px;
+    margin-top:60px;
+    margin-left:200px;
+    border:1px solid black;
+}
+
+.l_h3{
+    margin-top:-190px;
+    margin-left:315px;
+    font-size:.6cm;
+    font-family:courier prime
+}
+
+#l_b1{
+    margin-top:27px;
+    margin-left:1000px;
+    border:1px solid rgb(95, 95, 255);
+    color:rgb(255, 255, 255);
+    background-color:rgb(95, 95, 255);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+#l_b1:hover{
+    border:1px solid rgb(0, 0, 0);
+    color:rgb(0, 0, 0);
+    background-color:rgb(255, 255, 255);
+}
+.l_p1{
+    width:400px;
+    margin-top:30px;
+    margin-left:420px;
+    font-family:chakra petch;
+    letter-spacing:1.3px;
+    word-spacing:2px;
+}
+
+.create_blk2{
+    height:240px;
+    width:450px;
+    margin-top:60px;
+    /* margin-left:200px; */
+    border:1px solid black;
+}
+
+.l_h3_2{
+    margin-top:-150px;
+    margin-left:165px;
+    font-size:.5cm;
+    font-family:courier prime
+}
+
+.l_img2{
+    height:180px;
+    width:180px;
+    margin-top:30px;
+    margin-left:-260px;
+}
+
+.l_p1_2{
+    width:270px;
+    margin-left:180px;
+    font-family:chakra petch;
+    letter-spacing:1.3px;
+    word-spacing:2px;
+}
+
+.blocks2{
+    display:flex;
+    gap:50px;
+    margin-left:175px;
+}
+
+#l_b2{
+    margin-top:-20px;
+    margin-left:13px;
+    border:1px solid rgb(95, 95, 255);
+    color:rgb(255, 255, 255);
+    background-color:rgb(95, 95, 255);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    margin-bottom:60px;
+}
+
+#l_b2:hover{
+    border:1px solid rgb(0, 0, 0);
+    color:rgb(0, 0, 0);
+    background-color:rgb(255, 255, 255);
+}
+
+.l_h5{
+    font-family:indie flower;
+    font-size:.74cm;
+    margin-top:140px;
+    margin-left:16px;
+}
