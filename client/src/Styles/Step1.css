@@ -44,7 +44,6 @@
     margin-left:190px;
     margin-top:50px;
     border:1px solid black;
-    display:none;
 }
 
 .s_h4{
@@ -108,13 +107,40 @@
     margin-left:190px;
     margin-top:50px;
     border:1px solid black;
-    /* display:none; */
+    display:none;
 }
 .s3{
+    height:450px;
+    width:900px;
+    margin-left:190px;
+    margin-top:50px;
+    border:1px solid black;
+    display:none;
+}
+.s4{
     height:350px;
     width:900px;
     margin-left:190px;
     margin-top:50px;
     border:1px solid black;
     display:none;
+}
+
+.sb12{
+    margin-left:666px;
+    margin-top:50px;
+}
+
+.sh5{
+    width:600px;
+    margin-left:150px;
+    line-height:27px;
+}
+
+.inps{
+    font-family:Raleway;
+    font-size:.45cm;
+    text-align: left;
+    margin-top:20px;
+    margin-left:340px;
 }

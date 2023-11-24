@@ -4,6 +4,50 @@ function Step1() {
   function exit() {
     window.location.href = "/home";
   }
+
+  const first = document.querySelector(".s1");
+  const second = document.querySelector(".s2");
+  const third = document.querySelector(".s3");
+  const fourth = document.querySelector(".s4");
+
+  const step = document.querySelector(".s_h2");
+
+  function goToSec() {
+    first.style.display = "none";
+    third.style.display = "none";
+    fourth.style.display = "none";
+    second.style.display = "block";
+
+    step.innerHTML = "Step 2 of 4";
+  }
+
+  function goToThi() {
+    first.style.display = "none";
+    second.style.display = "none";
+    fourth.style.display = "none";
+    third.style.display = "block";
+
+    step.innerHTML = "Step 3 of 4";
+  }
+
+  function goToFou() {
+    first.style.display = "none";
+    second.style.display = "none";
+    third.style.display = "none";
+    fourth.style.display = "block";
+
+    step.innerHTML = "Step 4 of 4";
+  }
+
+  function goToFir() {
+    second.style.display = "none";
+    third.style.display = "none";
+    fourth.style.display = "none";
+    first.style.display = "block";
+
+    step.innerHTML = "Step 1 of 4";
+  }
+
   return (
     <>
       <style>
@@ -39,8 +83,9 @@ function Step1() {
             <option value="I don't know yet">I don't know yet</option>
           </select>
           <div className="s_buttons">
-            <button className="s_b2 sb">Previous</button>
-            <button className="s_b3 sb">Next</button>
+            <button className="s_b3 sb sb12" onClick={goToSec}>
+              Next
+            </button>
           </div>
         </div>
 
@@ -60,14 +105,57 @@ function Step1() {
             placeholder="e.g. Learn Web3 from Scratch"
           />
           <div className="s_buttons">
-            <button className="s_b2 sb">Previous</button>
-            <button className="s_b3 sb">Next</button>
+            <button className="s_b2 sb" onClick={goToFir}>
+              Previous
+            </button>
+            <button className="s_b3 sb" onClick={goToThi}>
+              Next
+            </button>
           </div>
         </div>
 
         {/* Third Step */}
         <div className="s3">
-          <h4 className="s_h4">What is the title of your course ?</h4>
+          <h4 className="s_h4">
+            How much time can you spend creating your course per week?
+          </h4>
+          <h5 className="s_h5 sh5">
+            It's ok if you can't think of a good title now. You can change it
+            later.There's no wrong answer. We can help you achieve your goals
+            even if you don't have much time.
+          </h5>
+
+          <div className="inps">
+            <input type="radio" id="vb" name="hours" value="VB" />
+            <label htmlFor="vb">Very busy right now - 2 hrs</label>
+            <br />
+            <br />
+
+            <input type="radio" id="bit" name="hours" value="Bit" />
+            <label htmlFor="bit">Can work a bit - 4 hrs</label>
+            <br />
+            <br />
+
+            <input type="radio" id="flex" name="hours" value="flex" />
+            <label htmlFor="flex">Have flexible time - 5+</label>
+            <br />
+            <br />
+
+            <input type="radio" id="nd" name="hours" value="nd" />
+            <label htmlFor="nd">I haven't decided the time</label>
+          </div>
+
+          <div className="s_buttons">
+            <button className="s_b2 sb" onClick={goToSec}>
+              Previous
+            </button>
+            <button className="s_b3 sb" onClick={goToFou}>
+              Next
+            </button>
+          </div>
+        </div>
+        <div className="s4">
+          <h4 className="s_h4">What i 4?</h4>
           <h5 className="s_h5">
             It's ok if you can't think of a good title now. You can change it
             later.
@@ -80,8 +168,12 @@ function Step1() {
             placeholder="e.g. Learn Web3 from Scratch"
           />
           <div className="s_buttons">
-            <button className="s_b2 sb">Previous</button>
-            <button className="s_b3 sb">Next</button>
+            <button className="s_b2 sb" onClick={goToThi}>
+              Previous
+            </button>
+            <button className="s_b3 sb" onClick={goToFir}>
+              Next
+            </button>
           </div>
         </div>
       </div>
