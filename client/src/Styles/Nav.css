@@ -19,10 +19,10 @@ body{
     color:rgb(0, 42, 255);
     margin-left:-1010px;
     margin-top:20px;
-    font-size:1.4cm;
+    font-size:1.2cm;
     font-weight:900;
     padding-top:8px;
-    font-family:handjet
+    font-family:indie flower
 }
 .buttons{
     margin-top:-95px;
@@ -46,26 +46,66 @@ body{
     margin-left:25px;
 }
 
-.bimg{
-    clip-path: circle(50% at 50% 50%);
-    width:48px;
-    height:48px;
-    margin-left:190px;
-    margin-top:-5px;
+.ul_p{
+    list-style: none;
+    display:flex;
+    gap:60px;
+    margin-left:-190px;
+    margin-top:10px;
+}
+
+.l{
+    text-decoration: none;
+    font-family: Indie flower;
+    font-size:.54cm;  
+    font-weight: 900;
+    color:rgb(0, 42, 255);
+    
+}
+
+.l:hover, .cour:hover{
+    color:rgb(68, 111, 149);
+}
+
+.link1{
     cursor: pointer;
 }
-.profileImg{
-    clip-path: circle(50% at 50% 50%);
-    padding:0px 0px;
-    width:40px;
-    height:40px;
-    margin-left:-10.1px;
-    margin-top:0px;
+.courses_blk{
+    position: absolute;
+    background-color:rgb(255, 255, 255);
+    height:92px;
+    width:160px;
+    z-index: 2;
+    margin-top:-20px;
+    margin-left:-165px;
+    border:1px solid rgb(0, 42, 255);
+    border-radius:10px;
+    display:none;
 }
-.bimg:hover{
-    .profileImg{
-        margin-left:-13px;
-        margin-top:-3px;
-    }
-    border:5px solid rgb(159, 80, 255);
+
+
+.cour{
+    background-color:white;
+    border:0;
+    font-family: Indie flower;
+    font-size:.54cm;  
+    font-weight: 900;
+    color:rgb(0, 42, 255);
+    cursor:pointer;
+}
+
+.ul_c1{
+    list-style: none;
+    margin-left:-40px;
+    cursor:pointer;
+}
+
+.ul2{
+    color:rgb(50, 49, 49);
+    font-family:Indie flower;
+    font-weight:800;
+}
+
+.ul2:hover{
+    color:rgb(156, 142, 142);
 }
