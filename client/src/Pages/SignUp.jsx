@@ -35,7 +35,7 @@ function SignUp() {
 
       // if (resp.status == 200) {
       //   console.log("Rendering Home ");
-      //   // window.location.href = "/verification";
+      // window.location.href = "/verification";
       //   data.status(200).json({ status: "Success" });
       // } else {
       //   console.log("Error while rendering HOME component");
