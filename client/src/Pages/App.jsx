@@ -8,6 +8,7 @@ import Profile from "./Profile";
 import PurchasePlus from "./PurchasePlus";
 import LaunchC from "./LaunchC";
 import Step1 from "./Step1";
+import Search from "./Search";
 
 function App() {
   const [data, setData] = useState("");
@@ -28,6 +29,7 @@ function App() {
         <Route path="purchaseplus" element={<PurchasePlus />} />
         <Route path="launchcourse" element={<LaunchC />} />
         <Route path="createcourse" element={<Step1 />} />
+        <Route path="search" element={<Search />} />
       </Routes>
     </>
   );

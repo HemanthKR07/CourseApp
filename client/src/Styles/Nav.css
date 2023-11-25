@@ -49,8 +49,8 @@ body{
 .ul_p{
     list-style: none;
     display:flex;
-    gap:60px;
-    margin-left:-190px;
+    gap:30px;
+    margin-left:-280px;
     margin-top:10px;
 }
 
@@ -77,7 +77,7 @@ body{
     width:160px;
     z-index: 2;
     margin-top:-20px;
-    margin-left:-165px;
+    margin-left:-100px;
     border:1px solid rgb(0, 42, 255);
     border-radius:10px;
     display:none;
@@ -109,4 +109,10 @@ body{
 
 .ul2:hover{
     color:rgb(156, 142, 142);
+}
+
+.search{
+    fill:rgb(47, 47, 243);
+    margin-top:4px;
+    margin-right:-80px;
 }
