@@ -1,6 +1,11 @@
-import React from "react";
+import { React, useState } from "react";
 import "../Styles/Step1.css";
 function Step1() {
+  const [field, setField] = useState("");
+  const [title, setTitle] = useState("");
+  const [hours, setHours] = useState("");
+  const [price, setPrice] = useState("");
+
   function exit() {
     window.location.href = "/home";
   }
@@ -96,7 +101,7 @@ function Step1() {
             If you're not sure about the right category, you can change it
             later.
           </h5>
-          <select name="dropdown" id="dropdown">
+          <select name="dropdown" id="dropdown" required="true">
             <option value="Choose a category">Choose a category</option>
             <option value="Development">Development</option>
             <option value="Business">Business</option>
@@ -190,6 +195,25 @@ function Step1() {
           <h5 className="s_h5">
             How much does your course worth ? Is it Economy or Premium ?
           </h5>
+          <input
+            type="number"
+            name="s_title"
+            id="dropdown"
+            maxLength={5}
+            placeholder="₹"
+          />
+          <div className="s_buttons">
+            <button className="s_b2 sb" onClick={goToThi}>
+              Previous
+            </button>
+            <button className="s_b3 sb" onClick={goToFir}>
+              Next
+            </button>
+          </div>
+        </div>
+        <div className="s5">
+          <h4 className="s_h4">Upload a thumb-nail</h4>
+          <h5 className="s_h5">Thumbnail for your course !</h5>
           <input
             type="number"
             name="s_title"

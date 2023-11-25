@@ -17,13 +17,24 @@ mon.connect('mongodb://localhost:27017',{
     console.log("DB Connected !")
 })
 
-const Schema = new mon.Schema({
+const Schema1 = new mon.Schema({
     name : String,
     email : String,
     pass : String
 })
 
-const User = mon.model("User1", Schema)
+const Schema2 = new mon.Schema({
+    id : number,
+    title : String,
+    field : String,
+    hours : number,
+    price : number,
+})
+
+const User = mon.model("User1", Schema1)
+
+const Courses = mon.model("Courses", Schema2)
+
 
 
 // async function authentication (req,res,next){
