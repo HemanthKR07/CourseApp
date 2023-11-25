@@ -5,47 +5,76 @@ function Step1() {
     window.location.href = "/home";
   }
 
-  const first = document.querySelector(".s1");
-  const second = document.querySelector(".s2");
-  const third = document.querySelector(".s3");
-  const fourth = document.querySelector(".s4");
-
-  const step = document.querySelector(".s_h2");
-
   function goToSec() {
-    first.style.display = "none";
-    third.style.display = "none";
-    fourth.style.display = "none";
-    second.style.display = "block";
+    const first = document.querySelector(".s1");
+    const second = document.querySelector(".s2");
+    const third = document.querySelector(".s3");
 
-    step.innerHTML = "Step 2 of 4";
+    const step = document.querySelector(".s_h2");
+
+    if (first) {
+      first.style.display = "none";
+    }
+    if (third) {
+      third.style.display = "none";
+    }
+    if (second) {
+      second.style.display = "block";
+    }
+    if (step) {
+      step.innerHTML = "Step 2 of 4";
+    }
   }
 
   function goToThi() {
-    first.style.display = "none";
-    second.style.display = "none";
-    fourth.style.display = "none";
-    third.style.display = "block";
+    const second = document.querySelector(".s2");
+    const third = document.querySelector(".s3");
+    const fourth = document.querySelector(".s4");
+    const step = document.querySelector(".s_h2");
 
-    step.innerHTML = "Step 3 of 4";
+    if (second) {
+      second.style.display = "none";
+    }
+    if (fourth) {
+      fourth.style.display = "none";
+    }
+    if (third) {
+      third.style.display = "block";
+    }
+    if (step) {
+      step.innerHTML = "Step 3 of 4";
+    }
   }
 
   function goToFou() {
-    first.style.display = "none";
-    second.style.display = "none";
-    third.style.display = "none";
-    fourth.style.display = "block";
+    const third = document.querySelector(".s3");
+    const fourth = document.querySelector(".s4");
+    const step = document.querySelector(".s_h2");
 
-    step.innerHTML = "Step 4 of 4";
+    if (third) {
+      third.style.display = "none";
+    }
+    if (fourth) {
+      fourth.style.display = "block";
+    }
+    if (step) {
+      step.innerHTML = "Step 4 of 4";
+    }
   }
-
   function goToFir() {
-    second.style.display = "none";
-    third.style.display = "none";
-    fourth.style.display = "none";
-    first.style.display = "block";
+    const first = document.querySelector(".s1");
+    const second = document.querySelector(".s2");
+    const step = document.querySelector(".s_h2");
 
-    step.innerHTML = "Step 1 of 4";
+    if (second) {
+      second.style.display = "none";
+    }
+    if (first) {
+      first.style.display = "block";
+    }
+    if (step) {
+      step.innerHTML = "Step 1 of 4";
+    }
   }
 
   return (
@@ -154,18 +183,19 @@ function Step1() {
             </button>
           </div>
         </div>
+        {/* Fourth Page */}
+
         <div className="s4">
-          <h4 className="s_h4">What i 4?</h4>
+          <h4 className="s_h4">What is the price of your course ?</h4>
           <h5 className="s_h5">
-            It's ok if you can't think of a good title now. You can change it
-            later.
+            How much does your course worth ? Is it Economy or Premium ?
           </h5>
           <input
-            type="text"
+            type="number"
             name="s_title"
             id="dropdown"
-            maxLength={60}
-            placeholder="e.g. Learn Web3 from Scratch"
+            maxLength={5}
+            placeholder="₹"
           />
           <div className="s_buttons">
             <button className="s_b2 sb" onClick={goToThi}>

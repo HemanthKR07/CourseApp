@@ -1,4 +1,5 @@
-import { React, Link } from "react";
+import { React } from "react";
+import { Link } from "react-router-dom";
 import Foot from "./Foot";
 import "../Styles/LaunchC.css";
 import LaunchBlock from "./LaunchBlock";
@@ -16,9 +17,11 @@ function LaunchC() {
       </style>
       <div className="l_b1">
         <NavLaunch />
-        {/* <div id="l_b1">
-          <Link to="/createcourse">Start Creating</Link>
-        </div> */}
+        <Link to="/createcourse">
+          <Button id="l_b1" variant="outlined">
+            Start Creating
+          </Button>
+        </Link>
         <LaunchBlock />
         <div className="blocks2">
           <LaunchBlock2
@@ -33,11 +36,11 @@ function LaunchC() {
           />
         </div>
         <h5 className="l_h5">Are You Ready To Begin ? </h5>
-        {/* <Link to="/createcourse"> */}
-        <Button id="l_b2" variant="outlined">
-          Start Creating
-        </Button>
-        {/* </Link> */}
+        <Link to="/createcourse">
+          <Button id="l_b2" variant="outlined">
+            Start Creating
+          </Button>
+        </Link>
       </div>
       <Foot />
     </>
