@@ -9,6 +9,8 @@ import PurchasePlus from "./PurchasePlus";
 import LaunchC from "./LaunchC";
 import Step1 from "./Step1";
 import Search from "./Search";
+import PurchasedCourses from "./PurchasedCourses";
+import MyCourses from "./MyCourses";
 
 function App() {
   const [data, setData] = useState("");
@@ -30,6 +32,8 @@ function App() {
         <Route path="launchcourse" element={<LaunchC />} />
         <Route path="createcourse" element={<Step1 />} />
         <Route path="search" element={<Search />} />
+        <Route path="purchasedcourses" element={<PurchasedCourses />} />
+        <Route path="myCourses" element={<MyCourses />} />
       </Routes>
     </>
   );

@@ -106,6 +106,10 @@ body{
     font-family:Indie flower;
     font-weight:800;
 }
+Link{
+    text-decoration:none;
+
+}
 
 .ul2:hover{
     color:rgb(156, 142, 142);

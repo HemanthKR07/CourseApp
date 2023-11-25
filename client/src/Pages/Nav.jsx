@@ -64,14 +64,17 @@ function Nav() {
             onMouseOut={mouseOut}
           >
             <ul className="ul_c1">
-              <li className="li1 ul2">Purchased Courses</li>
+              <Link to="/purchasedcourses">
+                {" "}
+                <li className="li1 ul2">Purchased Courses</li>
+              </Link>
               <hr />
-              <li className="li2 ul2">My Courses</li>
+              <Link to="/mycourses">
+                <li className="li2 ul2">My Courses</li>
+              </Link>
             </ul>
           </div>
         </div>
-        {/* <div class="myDIV">Hover over me.</div>
-<div class="hide">I am shown when someone hovers over the div above.</div> */}
       </div>
     </>
   );
