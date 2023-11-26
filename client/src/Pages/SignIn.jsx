@@ -1,36 +1,40 @@
 import { React, useState } from "react";
 import "../Styles/SignIn.css";
 import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import SignUp from "./SignUp";
+import Home from "./Home";
 
 function SignIn() {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
+  const [userExists, setUserExists] = useState(false);
 
   async function login() {
     const data = await fetch("http://localhost:5000/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        email: email,
+        pass: pass,
       },
-      body: JSON.stringify({
-        email,
-        pass,
-      }),
     });
 
     const response = await data.json();
 
     if (data.ok) {
-      window.location.href = "/home";
-      console.log("Rendering Home");
-      data.status(200).json({ message: "Success" });
+      if (data.comp === "C1") {
+        return <Home />;
+      } else if (data.comp === "C3") {
+        return <SignUp />;
+      } else {
+        console.log("Nope");
+      }
     } else {
-      console.log("Error while rendering");
-      data.status(404).json({ message: "Failed while rendering" });
+      // Handle error case or show a default component
+      return <div>Error occurred</div>;
     }
   }
-
   return (
     <>
       <div className="complete_si">
@@ -68,6 +72,7 @@ function SignIn() {
           >
             SIGN IN
           </Button>
+          {/* {userExists ? <Navigate to="/home" /> : <p></p>} */}
           <br />
           <h6 className="si_h6">
             Don't have an account ?{" "}

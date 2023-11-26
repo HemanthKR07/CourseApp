@@ -85,21 +85,40 @@ app.get('/createUser', async (req,res)=>{
 // console.log("Updated Header")
 
 
-// app.post('/login', async (req,res)=>{
-//     const email = req.body.email
-//     const pass = req.body.pass
+app.post('/login', async (req,res)=>{
+    const email = req.headers["email"];
+    const passw = req.headers["pass"];
     
-//     const UserExist = await User.findOne({email:email,pass:pass})
-    
-//     if (UserExist){
-//         const token = jwt.sign({email,pass},Secret, {expiresIn:'1h'});
-//         console.log("User logged in")
-//         console.log(token)
-//         res.setHeader('Authorization', `Bearer ${token}`)
+    try {
+        const UserExist = await Model.findOne({email:email})
 
-//         if (typeof(Storage) !== 'undefined'){
-//             localStorage.setItem("Token", token)
-//             console.log("Data saved in storage")
+    if (UserExist){
+        console.log(UserExist.pass)
+        if (UserExist.pass == passw){
+            console.log("User exists - Signing In")
+            res.status(200).json({message : "Exists", comp:"C1"})   
+        } else {
+            console.log("Wrong password !")
+            res.status(401).json({message:"Wrond password", comp:"C2"})
+        }
+    } else {
+        console.log("User doesn't exist - Rendering Sign up page")
+        res.status(404).json({message:"User Doesn't exist", comp:"C3"})
+    }
+    } catch (error) {
+        console.log(error)
+        res.status(500).json("Internal error ")   
+    }
+
+    // if (UserExist){
+    //     const token = jwt.sign({email,pass},Secret, {expiresIn:'1h'});
+    //     console.log("User logged in")
+    //     console.log(token)
+    //     res.setHeader('Authorization', `Bearer ${token}`)
+
+        // if (typeof(Storage) !== 'undefined'){
+        //     localStorage.setItem("Token", token)
+        //     console.log("Data saved in storage")
 // } else {
 //     console.log("Your browser doesnt support LocalStorage")
 // }
@@ -109,7 +128,7 @@ app.get('/createUser', async (req,res)=>{
 //         res.status(403).json({message: "Invalid credentials !"})
 //         console.log("Invalid User credentials !")
 //     } 
-// })
+})
 
 
 app.post('/verify',(req,res)=>{
