@@ -66,7 +66,7 @@ function Nav() {
             <ul className="ul_c1">
               <Link to="/purchasedcourses">
                 {" "}
-                <li className="li1 ul2">Purchased Courses</li>
+                <li className="li1 ul2">My Purchases</li>
               </Link>
               <hr />
               <Link to="/mycourses">

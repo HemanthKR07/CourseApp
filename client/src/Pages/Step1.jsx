@@ -1,10 +1,10 @@
 import { React, useState } from "react";
 import "../Styles/Step1.css";
 function Step1() {
-  const [field, setField] = useState("");
-  const [title, setTitle] = useState("");
-  const [hours, setHours] = useState("");
-  const [price, setPrice] = useState("");
+  // const [field, setField] = useState("");
+  // const [title, setTitle] = useState("");
+  // const [hours, setHours] = useState("");
+  // const [price, setPrice] = useState("");
 
   function exit() {
     window.location.href = "/home";

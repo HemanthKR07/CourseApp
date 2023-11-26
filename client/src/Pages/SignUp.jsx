@@ -1,14 +1,15 @@
 import { React, useState } from "react";
 import "../Styles/SignUp.css";
 import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
-  const [otp, setOtp] = useState("");
-  let globalVariable = 0;
+  const [sotp, setsotp] = useState();
+  const [OTP, setOTP] = useState();
+  const [isValidOTP, setIsValidOTP] = useState(false);
 
   async function Createit(name, email, pass) {
     try {
@@ -29,18 +30,9 @@ function SignUp() {
         if (fDiv) {
           fDiv.classList.toggle("rem1");
           sDiv.classList.toggle("rem2");
-          generateAgain();
+          generateAgain(email);
         }
       }
-
-      // if (resp.status == 200) {
-      //   console.log("Rendering Home ");
-      // window.location.href = "/verification";
-      //   data.status(200).json({ status: "Success" });
-      // } else {
-      //   console.log("Error while rendering HOME component");
-      //   resp.status(404).json({ status: "Error while rendering" });
-      // }
     } catch (err) {
       console.log(`Error1 : ${err.message}`);
     }
@@ -54,22 +46,21 @@ function SignUp() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          UserName: name,
           email: email,
+          pass: pass,
         },
       });
+
+      const mailid = await generate.json();
+
       if (generate.status == 200) {
-        const resp = await generate.json();
-        globalVariable = resp.otp;
-        console.log(resp.message);
+        setsotp(mailid.otp);
+        console.log(mailid.otp);
       }
     } catch (error) {
       console.log("Error in fetch gen req : ", error);
     }
-
-    // if (generate.status === 200) {
-    //   const tag = document.querySelector(".si_h6");
-    //   tag.innerHTML = generate.message;
-    // }
   }
 
   function goBack() {
@@ -81,12 +72,16 @@ function SignUp() {
     }
   }
 
-  function createAccount(otp, globalVariable) {
-    if (otp === globalVariable) {
+  function createAccount(sotp, OTP) {
+    console.log("sotp", sotp);
+    console.log("OTP", OTP);
+    if (sotp == OTP) {
       console.log("Hello");
+      setIsValidOTP(true);
+    } else {
+      console.log("Invalid OTP");
     }
   }
-
   return (
     <>
       <div className="complete_su ">
@@ -104,6 +99,7 @@ function SignUp() {
             onChange={(e) => {
               setName(e.target.value);
             }}
+            required
             placeholder="Enter your full name"
           />{" "}
           <br />
@@ -116,6 +112,7 @@ function SignUp() {
             onChange={(e) => {
               setEmail(e.target.value);
             }}
+            required
             placeholder="name@gmail.com"
           />{" "}
           <br />
@@ -155,7 +152,11 @@ function SignUp() {
       <div className="si1 rem2">
         <div className="si_blk">
           <h3 className="si_title">Verification</h3>
-          <button id="vB1" style={{ marginTop: "1px" }} onClick={goBack}>
+          <button
+            id="vB1"
+            style={{ marginTop: "1px", backgroundColor: "white" }}
+            onClick={goBack}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="1.5em"
@@ -175,8 +176,9 @@ function SignUp() {
             id=""
             className="i1"
             onChange={(e) => {
-              setOtp(e.target.value);
+              setOTP(e.target.value);
             }}
+            placeholder="Enter OTP"
           />
           <br />
           <br />
@@ -195,10 +197,13 @@ function SignUp() {
               id="si_ca"
               variant="contained"
               style={{ marginTop: "1px" }}
-              onClick={createAccount}
+              onClick={() => {
+                createAccount(sotp, OTP);
+              }}
             >
               Create Account
             </Button>
+            {isValidOTP ? <Navigate to="/home" /> : <p></p>}
           </div>
         </div>
       </div>

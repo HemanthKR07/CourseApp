@@ -23,17 +23,17 @@ const Schema1 = new mon.Schema({
     pass : String
 })
 
-const Schema2 = new mon.Schema({
-    id : number,
-    title : String,
-    field : String,
-    hours : number,
-    price : number,
-})
+// const Schema2 = new mon.Schema({
+//     id : number,
+//     title : String,
+//     field : String,
+//     hours : number,
+//     price : number,
+// })
 
 const User = mon.model("User1", Schema1)
 
-const Courses = mon.model("Courses", Schema2)
+// const Courses = mon.model("Courses", Schema2)
 
 
 
@@ -50,6 +50,8 @@ const Courses = mon.model("Courses", Schema2)
 //     }
 // }
 
+
+// This api is used to check is there's any in user with that mail id.
 app.post('/', async (req,res)=>{
     console.log("Requested !")
     const existingUser = await User.findOne({email:req.headers.email})
@@ -60,21 +62,21 @@ app.post('/', async (req,res)=>{
     } else {
         console.log("In Else Block")
         res.status(200).json({message:"Proceed !"})
-        // const newU = await User.create({
-        //     name : req.headers.UserName,
-        //     email: req.headers.email,
-        //     pass : req.headers.pass
-        // })
-       
-        // const token = jwt.sign({newU},Secret,{expiresIn:'1h'})
-       
-        // console.log(token)
-
-        // res.setHeader('Authorization', `Bearer ${token}`);
-        // console.log("Updated Header")
-        // res.status(200).json({message:"Success"})
     }
 })
+// const newU = await User.create({
+//     name : req.headers.UserName,
+//     email: req.headers.email,
+//     pass : req.headers.pass
+// })
+
+// const token = jwt.sign({newU},Secret,{expiresIn:'1h'})
+
+// console.log(token)
+
+// res.setHeader('Authorization', `Bearer ${token}`);
+// console.log("Updated Header")
+// res.status(200).json({message:"Success"})
 
 // app.post('/login', async (req,res)=>{
 //     const email = req.body.email
@@ -102,8 +104,9 @@ app.post('/', async (req,res)=>{
 //     } 
 // })
 
+
 app.post('/verify',(req,res)=>{
-        const email = req.headers.email
+        const email = req.headers["email"]
         console.log(email)
 
         async function sendMail() {
