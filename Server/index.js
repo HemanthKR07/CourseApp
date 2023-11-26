@@ -23,17 +23,40 @@ const Schema1 = new mon.Schema({
     pass : String
 })
 
+const Schema2 = new mon.Schema({
+    id : Number,
+    title : String,
+    field : String,
+    hours : Number,
+    price : Number,
+    launch : Boolean,
+    buy : Boolean
+})
 const Model = mon.model("UserData", Schema1)
+const Courses = mon.model("Courses", Schema2)
 
-// const Schema2 = new mon.Schema({
-//     id : number,
-//     title : String,
-//     field : String,
-//     hours : number,
-//     price : number,
-// })
+app.post('/coursecreate',(req,res)=>{
+    const id = req.headers["id"];
+    const title = req.headers["title"];
+    const field = req.headers["field"];
+    const hours = req.headers["hours"];
+    const price = req.headers["price"];
 
-// const Courses = mon.model("Courses", Schema2)
+    const resp = Courses.create({
+        id : id,
+    title : title,
+    field : field,
+    hours : hours,
+    price : price,
+    launch : true,
+    buy : false
+    })
+    if (resp){
+        res.status(200).json({msg:"Success"})
+    } else {
+        res.status(404).json({msg:"Failed"})
+    }
+})
 
 // async function authentication (req,res,next){
 //     const token = req.headers("Authorization").split(" ")[1]
@@ -77,12 +100,6 @@ app.get('/createUser', async (req,res)=>{
             console.log("Failed to create User - Server")
         }
 })
-
-
-// const token = jwt.sign({newU},Secret,{expiresIn:'1h'})
-// console.log(token)
-// res.setHeader('Authorization', `Bearer ${token}`);
-// console.log("Updated Header")
 
 
 app.post('/login', async (req,res)=>{

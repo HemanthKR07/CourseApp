@@ -1,10 +1,10 @@
 import { React, useState } from "react";
 import "../Styles/Step1.css";
 function Step1() {
-  // const [field, setField] = useState("");
-  // const [title, setTitle] = useState("");
-  // const [hours, setHours] = useState("");
-  // const [price, setPrice] = useState("");
+  const [field, setField] = useState("Choose a category");
+  const [title, setTitle] = useState("");
+  const [hours, setHours] = useState("");
+  const [price, setPrice] = useState("");
 
   function exit() {
     window.location.href = "/home";
@@ -27,7 +27,7 @@ function Step1() {
       second.style.display = "block";
     }
     if (step) {
-      step.innerHTML = "Step 2 of 4";
+      step.innerHTML = "Step 2 of 5";
     }
   }
 
@@ -47,23 +47,27 @@ function Step1() {
       third.style.display = "block";
     }
     if (step) {
-      step.innerHTML = "Step 3 of 4";
+      step.innerHTML = "Step 3 of 5";
     }
   }
 
   function goToFou() {
     const third = document.querySelector(".s3");
     const fourth = document.querySelector(".s4");
+    const fifth = document.querySelector(".s5");
     const step = document.querySelector(".s_h2");
 
     if (third) {
       third.style.display = "none";
     }
+    if (fifth) {
+      fifth.style.display = "none";
+    }
     if (fourth) {
       fourth.style.display = "block";
     }
     if (step) {
-      step.innerHTML = "Step 4 of 4";
+      step.innerHTML = "Step 4 of 5";
     }
   }
   function goToFir() {
@@ -78,10 +82,26 @@ function Step1() {
       first.style.display = "block";
     }
     if (step) {
-      step.innerHTML = "Step 1 of 4";
+      step.innerHTML = "Step 1 of 5";
     }
   }
 
+  function goToFif() {
+    const fourth = document.querySelector(".s4");
+    const fifth = document.querySelector(".s5");
+    const step = document.querySelector(".s_h2");
+
+    if (fourth) {
+      fourth.style.display = "none";
+    }
+    if (fifth) {
+      fifth.style.display = "block";
+    }
+
+    if (step) {
+      step.innerHTML = "Step 5 of 5";
+    }
+  }
   return (
     <>
       <style>
@@ -101,7 +121,14 @@ function Step1() {
             If you're not sure about the right category, you can change it
             later.
           </h5>
-          <select name="dropdown" id="dropdown" required="true">
+          <select
+            name="dropdown"
+            id="dropdown"
+            value={field}
+            onChange={(e) => {
+              setField(e.target.value);
+            }}
+          >
             <option value="Choose a category">Choose a category</option>
             <option value="Development">Development</option>
             <option value="Business">Business</option>
@@ -136,6 +163,9 @@ function Step1() {
             name="s_title"
             id="dropdown"
             maxLength={60}
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
             placeholder="e.g. Learn Web3 from Scratch"
           />
           <div className="s_buttons">
@@ -150,35 +180,24 @@ function Step1() {
 
         {/* Third Step */}
         <div className="s3">
-          <h4 className="s_h4">
+          <h4 className="s_h41 s_h4" style={{ marginTop: "18px" }}>
             How much time can you spend creating your course per week?
           </h4>
-          <h5 className="s_h5 sh5">
-            It's ok if you can't think of a good title now. You can change it
-            later.There's no wrong answer. We can help you achieve your goals
-            even if you don't have much time.
+          <h5 className="s_h5 sh5 i3p">
+            We can help you achieve your goals even if you don't have much time.
           </h5>
 
-          <div className="inps">
-            <input type="radio" id="vb" name="hours" value="VB" />
-            <label htmlFor="vb">Very busy right now - 2 hrs</label>
-            <br />
-            <br />
-
-            <input type="radio" id="bit" name="hours" value="Bit" />
-            <label htmlFor="bit">Can work a bit - 4 hrs</label>
-            <br />
-            <br />
-
-            <input type="radio" id="flex" name="hours" value="flex" />
-            <label htmlFor="flex">Have flexible time - 5+</label>
-            <br />
-            <br />
-
-            <input type="radio" id="nd" name="hours" value="nd" />
-            <label htmlFor="nd">I haven't decided the time</label>
-          </div>
-
+          <input
+            type="text"
+            name="s_title"
+            id="dropdown"
+            maxLength={60}
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+            placeholder="min 3hrs/week"
+            style={{ marginTop: "-3.2px" }}
+          />
           <div className="s_buttons">
             <button className="s_b2 sb" onClick={goToSec}>
               Previous
@@ -206,28 +225,22 @@ function Step1() {
             <button className="s_b2 sb" onClick={goToThi}>
               Previous
             </button>
-            <button className="s_b3 sb" onClick={goToFir}>
+            <button className="s_b3 sb" onClick={goToFif}>
               Next
             </button>
           </div>
         </div>
+
+        {/* Fifth Block */}
         <div className="s5">
           <h4 className="s_h4">Upload a thumb-nail</h4>
           <h5 className="s_h5">Thumbnail for your course !</h5>
-          <input
-            type="number"
-            name="s_title"
-            id="dropdown"
-            maxLength={5}
-            placeholder="₹"
-          />
+          <input type="file" name="s_title" id="dropdown1" />
           <div className="s_buttons">
-            <button className="s_b2 sb" onClick={goToThi}>
+            <button className="s_b2 sb" onClick={goToFou}>
               Previous
             </button>
-            <button className="s_b3 sb" onClick={goToFir}>
-              Next
-            </button>
+            <button className="s_b3 sb">Next</button>
           </div>
         </div>
       </div>
