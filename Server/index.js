@@ -11,7 +11,7 @@ const Secret = 'yoUr_s3CrEt';
 app.use(cors())
 
 mon.connect('mongodb://localhost:27017',{
-    dbName : "Mern1",
+    dbName : "Coursera",
     useUnifiedTopology : true
 }).then(()=>{
     console.log("DB Connected !")
@@ -23,6 +23,8 @@ const Schema1 = new mon.Schema({
     pass : String
 })
 
+const Model = mon.model("UserData", Schema1)
+
 // const Schema2 = new mon.Schema({
 //     id : number,
 //     title : String,
@@ -31,11 +33,7 @@ const Schema1 = new mon.Schema({
 //     price : number,
 // })
 
-const User = mon.model("User1", Schema1)
-
 // const Courses = mon.model("Courses", Schema2)
-
-
 
 // async function authentication (req,res,next){
 //     const token = req.headers("Authorization").split(" ")[1]
@@ -51,10 +49,10 @@ const User = mon.model("User1", Schema1)
 // }
 
 
-// This api is used to check is there's any in user with that mail id.
+// This api is used to check is there's any user with that mail id.
 app.post('/', async (req,res)=>{
     console.log("Requested !")
-    const existingUser = await User.findOne({email:req.headers.email})
+    const existingUser = await Model.findOne({email:req.headers.email})
     
     if (existingUser){
         res.status(403).json({message : "User already exist"})
@@ -64,19 +62,28 @@ app.post('/', async (req,res)=>{
         res.status(200).json({message:"Proceed !"})
     }
 })
-// const newU = await User.create({
-//     name : req.headers.UserName,
-//     email: req.headers.email,
-//     pass : req.headers.pass
-// })
+
+app.get('/createUser', async (req,res)=>{
+        const newU = await Model.create({
+            name : req.headers["userName"],
+            email: req.headers.email,
+            pass : req.headers.pass
+        })
+        if (newU){
+            res.status(200).json({message:"Success"})
+            console.log("User created - Server")
+        } else {
+            res.status(403).json({message:"Failed"})
+            console.log("Failed to create User - Server")
+        }
+})
+
 
 // const token = jwt.sign({newU},Secret,{expiresIn:'1h'})
-
 // console.log(token)
-
 // res.setHeader('Authorization', `Bearer ${token}`);
 // console.log("Updated Header")
-// res.status(200).json({message:"Success"})
+
 
 // app.post('/login', async (req,res)=>{
 //     const email = req.body.email

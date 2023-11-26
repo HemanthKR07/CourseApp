@@ -72,12 +72,29 @@ function SignUp() {
     }
   }
 
-  function createAccount(sotp, OTP) {
+  async function createAccount(sotp, OTP) {
     console.log("sotp", sotp);
     console.log("OTP", OTP);
     if (sotp == OTP) {
       console.log("Hello");
       setIsValidOTP(true);
+
+      const create = await fetch("http://localhost:5000/createUser", {
+        method: "Get",
+        headers: {
+          "Content-Type": "application/json",
+          userName: name,
+          email: email,
+          pass: pass,
+        },
+      });
+
+      const data2 = await create.json();
+      if (create.status == 200) {
+        console.log("User created !");
+      } else {
+        console.log("Error while creating User !");
+      }
     } else {
       console.log("Invalid OTP");
     }
