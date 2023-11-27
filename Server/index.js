@@ -3,7 +3,7 @@ import mon from 'mongoose'
 import cors from 'cors';
 import nodemailer from 'nodemailer';
 import multer, { diskStorage } from 'multer';
-
+import path from 'path';
 
 const app = exp()
 app.use(exp.json())
@@ -21,7 +21,6 @@ mon.connect('mongodb://localhost:27017',{
 const Schema1 = new mon.Schema({
     name : String,
     email : String,
-    pass : String
 })
 
 const Schema2 = new mon.Schema({
@@ -42,9 +41,11 @@ const Courses = mon.model("Courses", Schema2)
 
 
 const storage = multer.diskStorage({
-        destination : '../client/src/images',
+        destination : (req,file,cb)=>{
+                cb(null,'../client/src/images')
+        },
         filename : (req, file, cb)=>{
-                cb(null, file.originalname)
+                cb(null, file.filename + " "+ Date.now() + path.extname(file.originalname))
         }
 })
 
