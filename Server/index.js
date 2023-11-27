@@ -1,8 +1,9 @@
 import exp from 'express';
 import mon from 'mongoose'
 import cors from 'cors';
-import jwt from 'jsonwebtoken'
 import nodemailer from 'nodemailer';
+import multer, { diskStorage } from 'multer';
+
 
 const app = exp()
 app.use(exp.json())
@@ -29,32 +30,53 @@ const Schema2 = new mon.Schema({
     field : String,
     hours : Number,
     price : Number,
+    image : {
+        data:Buffer,
+        contentType:String
+    },
     launch : Boolean,
     buy : Boolean
 })
 const Model = mon.model("UserData", Schema1)
 const Courses = mon.model("Courses", Schema2)
 
-app.post('/coursecreate',(req,res)=>{
+
+const storage = multer.diskStorage({
+        destination : '../client/src/images',
+        filename : (req, file, cb)=>{
+                cb(null, file.originalname)
+        }
+})
+
+const upload = multer({
+    storage : storage
+})
+
+
+
+app.post('/coursecreate', upload.single('image1'), (req,res)=>{
     const id = req.headers["id"];
     const title = req.headers["title"];
     const field = req.headers["field"];
     const hours = req.headers["hours"];
     const price = req.headers["price"];
-
+    const image = req.file.filename;
     const resp = Courses.create({
         id : id,
     title : title,
     field : field,
     hours : hours,
     price : price,
+    image : image,
     launch : true,
     buy : false
     })
     if (resp){
         res.status(200).json({msg:"Success"})
+        console.log("Course created - Server")
     } else {
         res.status(404).json({msg:"Failed"})
+        console.log("Course wasn't created - Server")
     }
 })
 

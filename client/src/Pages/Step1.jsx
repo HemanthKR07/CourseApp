@@ -5,7 +5,7 @@ function Step1() {
   const [title, setTitle] = useState("");
   const [hours, setHours] = useState("");
   const [price, setPrice] = useState("");
-
+  // const [image, setImage] = useState();
   function exit() {
     window.location.href = "/home";
   }
@@ -102,6 +102,33 @@ function Step1() {
       step.innerHTML = "Step 5 of 5";
     }
   }
+
+  async function submit() {
+    try {
+      const resp = await fetch("http://localhost:5000/coursecreate", {
+        method: "Post",
+        headers: {
+          "Content-Type": "application/json",
+          id: 0,
+          title: title,
+          field: field,
+          hours: hours,
+          price: price,
+          // image: image1,
+        },
+      });
+
+      const data3 = await resp.json();
+      if (resp.status == 200) {
+        console.log("Course created");
+      } else {
+        console.log("Failed to create a course");
+      }
+    } catch (error) {
+      console.log("Error inncourse catch : ", error);
+    }
+  }
+
   return (
     <>
       <style>
@@ -193,7 +220,7 @@ function Step1() {
             id="dropdown"
             maxLength={60}
             onChange={(e) => {
-              setTitle(e.target.value);
+              setHours(e.target.value);
             }}
             placeholder="min 3hrs/week"
             style={{ marginTop: "-3.2px" }}
@@ -219,6 +246,9 @@ function Step1() {
             name="s_title"
             id="dropdown"
             maxLength={5}
+            onChange={(e) => {
+              setPrice(e.target.value);
+            }}
             placeholder="₹"
           />
           <div className="s_buttons">
@@ -236,12 +266,14 @@ function Step1() {
         <div className="s5">
           <h4 className="s_h4">Upload a thumb-nail</h4>
           <h5 className="s_h5">Thumbnail for your course !</h5>
-          <input type="file" name="s_title" id="dropdown1" />
+          <input type="file" name="image1" id="dropdown1" />
           <div className="s_buttons">
             <button className="s_b2 sb" onClick={goToFou}>
               Previous
             </button>
-            <button className="s_b3 sb">Next</button>
+            <button className="s_b3 sb" onClick={submit}>
+              Next
+            </button>
           </div>
         </div>
       </div>
