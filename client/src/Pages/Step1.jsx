@@ -232,6 +232,7 @@ function Step1() {
         </div>
 
         {/* Fifth Block */}
+
         <div className="s5">
           <h4 className="s_h4">Upload a thumb-nail</h4>
           <h5 className="s_h5">Thumbnail for your course !</h5>
