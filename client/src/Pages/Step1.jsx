@@ -5,7 +5,7 @@ function Step1() {
   const [title, setTitle] = useState("");
   const [hours, setHours] = useState("");
   const [price, setPrice] = useState("");
-  // const [image, setImage] = useState();
+  const [image, setImage] = useState();
   function exit() {
     window.location.href = "/home";
   }
@@ -266,7 +266,14 @@ function Step1() {
         <div className="s5">
           <h4 className="s_h4">Upload a thumb-nail</h4>
           <h5 className="s_h5">Thumbnail for your course !</h5>
-          <input type="file" name="image1" id="dropdown1" />
+          <input
+            type="file"
+            name="image1"
+            id="dropdown1"
+            onChange={(e) => {
+              setImage(e.target.value[0]);
+            }}
+          />
           <div className="s_buttons">
             <button className="s_b2 sb" onClick={goToFou}>
               Previous
