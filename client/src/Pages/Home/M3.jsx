@@ -1,5 +1,5 @@
 import React from "react";
-import "../Styles/M3.css";
+import "./M3.css";
 import Rev from "./Review_blk";
 import p1 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\Practice\\client\\src\\images\\p1.png";
 import p2 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\Practice\\client\\src\\images\\p2.png";

@@ -1,5 +1,5 @@
 import React from "react";
-import "../Styles/PurchaseNav.css";
+import "./PurchaseNav.css";
 function PurchaseNav() {
   function animateit(event) {
     const btnElement = event.target.closest(".btn_n");

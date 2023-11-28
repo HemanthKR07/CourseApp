@@ -1,5 +1,5 @@
 import React from "react";
-import "../Styles/ProjectCard.css";
+import "./ProjectCard.css";
 import Button from "@mui/material/Button";
 
 function ProjectCard(obj) {

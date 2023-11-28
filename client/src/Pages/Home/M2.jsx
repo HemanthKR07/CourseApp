@@ -1,5 +1,5 @@
 import React from "react";
-import "../Styles/M2.css";
+import "./M2.css";
 import l1 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\Practice\\client\\src\\images\\l1.png";
 import l2 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\Practice\\client\\src\\images\\l2.png";
 import l3 from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\Practice\\client\\src\\images\\l3.png";

@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import pic from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\Practice\\client\\src\\images\\Ppic.jpg";
-import "../Styles/Profile.css";
+import "./Profile.css";
 import Button from "@mui/material/Button";
 import ProjectCard from "./ProjectCard";
 import Foot from "../Foot/Foot";

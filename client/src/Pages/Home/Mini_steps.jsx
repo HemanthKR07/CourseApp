@@ -1,5 +1,5 @@
 import React from "react";
-import "../Styles/Mini_steps.css";
+import "./Mini_steps.css";
 
 function Mini_steps(props) {
   return (

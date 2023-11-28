@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import "../Styles/Step1.css";
+import "./Step1.css";
 function Step1() {
   const [field, setField] = useState("Choose a category");
   const [title, setTitle] = useState("");

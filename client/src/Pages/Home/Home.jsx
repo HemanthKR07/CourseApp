@@ -1,5 +1,5 @@
-import "../Styles/App.css";
-import Nav from "../Nav/Nav";
+import "./App.css";
+import Nav from "./Nav/Nav";
 import M1 from "./M1";
 import M2 from "./M2";
 import M3 from "./M3";

@@ -1,5 +1,5 @@
 import { React, Link } from "react";
-import "../Styles/Foot.css";
+import "./Foot.css";
 
 function Foot() {
   return (

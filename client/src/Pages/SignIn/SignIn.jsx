@@ -1,5 +1,5 @@
 import { React, useState, Navigate } from "react";
-import "../Styles/SignIn.css";
+import "./SignIn.css";
 import Button from "@mui/material/Button";
 import { Link, Navigate } from "react-router-dom";
 import SignUp from "../SignUp/SignUp";

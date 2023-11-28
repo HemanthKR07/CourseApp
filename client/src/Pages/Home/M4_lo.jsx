@@ -1,5 +1,5 @@
 import React from "react";
-import "../Styles/M4_lo.css";
+import "./M4_lo.css";
 
 function M4_lo() {
   function toPurchase() {

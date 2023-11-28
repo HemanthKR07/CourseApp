@@ -1,7 +1,7 @@
 import { React } from "react";
 import { Link } from "react-router-dom";
 import Foot from "../Foot/Foot";
-import "../Styles/LaunchC.css";
+import "./LaunchC.css";
 import LaunchBlock from "./LaunchBlock";
 import NavLaunch from "./NavLaunch";
 import Button from "@mui/material/Button";

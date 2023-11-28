@@ -1,5 +1,5 @@
 import React from "react";
-import "../Styles/PurchasePlus.css";
+import "./PurchasePlus.css";
 import PurchaseNav from "./PurchaseNav";
 import Button from "@mui/material/Button";
 import img1 from "../images/p1.png";
