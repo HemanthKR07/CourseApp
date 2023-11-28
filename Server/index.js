@@ -2,7 +2,7 @@ import exp from 'express';
 import mon from 'mongoose'
 import cors from 'cors';
 import nodemailer from 'nodemailer';
-import multer, { diskStorage } from 'multer';
+import multer from 'multer';
 import path from 'path';
 
 const app = exp()
@@ -41,18 +41,15 @@ const Courses = mon.model("Courses", Schema2)
 
 
 const storage = multer.diskStorage({
-        destination : (req,file,cb)=>{
-                cb(null,'../client/src/images')
-        },
-        filename : (req, file, cb)=>{
-                cb(null, file.filename + " "+ Date.now() + path.extname(file.originalname))
-        }
+    destination : 'src/CourseImages',
+    filename: (req, file, cb)=>{
+            cb(null, file.originalname)
+    }
 })
 
 const upload = multer({
     storage : storage
 })
-
 
 
 app.post('/coursecreate', upload.single('image1'), (req,res)=>{
@@ -81,22 +78,9 @@ app.post('/coursecreate', upload.single('image1'), (req,res)=>{
     }
 })
 
-// async function authentication (req,res,next){
-//     const token = req.headers("Authorization").split(" ")[1]
-//     const data = jwt.verify(token,Secret)
-//     console.log(data)
-//     next();
-// }
-
-// function UserAuthentication(req,res,next){
-//     if (req.headers("Authorization")){
-//         condition = true;
-//     }
-// }
-
 
 // This api is used to check is there's any user with that mail id.
-app.post('/', async (req,res)=>{
+app.post('/signup', async (req,res)=>{
     console.log("Requested !")
     const existingUser = await Model.findOne({email:req.headers.email})
     
@@ -125,7 +109,7 @@ app.get('/createUser', async (req,res)=>{
 })
 
 
-app.post('/login', async (req,res)=>{
+app.post('/', async (req,res)=>{
     const email = req.headers["email"];
     const passw = req.headers["pass"];
     

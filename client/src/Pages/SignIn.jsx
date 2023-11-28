@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, Navigate } from "react";
 import "../Styles/SignIn.css";
 import Button from "@mui/material/Button";
 import { Link, Navigate } from "react-router-dom";
@@ -11,7 +11,7 @@ function SignIn() {
   const [userExists, setUserExists] = useState(false);
 
   async function login() {
-    const data = await fetch("http://localhost:5000/login", {
+    const data = await fetch("http://localhost:5000/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -22,17 +22,11 @@ function SignIn() {
 
     const response = await data.json();
 
-    if (data.ok) {
-      if (data.comp === "C1") {
-        return <Home />;
-      } else if (data.comp === "C3") {
-        return <SignUp />;
-      } else {
-        console.log("Nope");
-      }
+    if (data.status == 200) {
+      userExists(true);
+    } else if (data.status == 401) {
     } else {
-      // Handle error case or show a default component
-      return <div>Error occurred</div>;
+      console.log("User doesnt exist !");
     }
   }
   return (
@@ -70,6 +64,7 @@ function SignIn() {
             style={{ marginTop: "18px" }}
             onClick={login}
           >
+            {}
             SIGN IN
           </Button>
           {/* {userExists ? <Navigate to="/home" /> : <p></p>} */}

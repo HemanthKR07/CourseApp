@@ -13,7 +13,7 @@ function SignUp() {
 
   async function Createit(name, email, pass) {
     try {
-      const resp = await fetch("http://localhost:5000/", {
+      const resp = await fetch("http://localhost:5000/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

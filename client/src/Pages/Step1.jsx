@@ -114,7 +114,7 @@ function Step1() {
           field: field,
           hours: hours,
           price: price,
-          // image: image1,
+          image: image,
         },
       });
 
@@ -271,7 +271,7 @@ function Step1() {
             name="image1"
             id="dropdown1"
             onChange={(e) => {
-              setImage(e.target.value[0]);
+              setImage(e.target.files[0]);
             }}
           />
           <div className="s_buttons">

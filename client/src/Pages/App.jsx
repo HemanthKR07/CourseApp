@@ -20,13 +20,10 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" exact element={<SignUp />} />
+        <Route path="/signup" exact element={<SignUp />} />
         <Route path="home" element={<Home />} />
 
-        <Route
-          path="signin"
-          element={<SignIn sendData={handleReceivedData} />}
-        />
+        <Route path="/" element={<SignIn />} />
         <Route path="profile" element={<Profile />} />
         <Route path="purchaseplus" element={<PurchasePlus />} />
         <Route path="launchcourse" element={<LaunchC />} />
