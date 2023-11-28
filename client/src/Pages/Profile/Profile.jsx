@@ -3,7 +3,7 @@ import pic from "C:\\Users\\Hemanth KR\\OneDrive\\Desktop\\Practice\\client\\src
 import "../Styles/Profile.css";
 import Button from "@mui/material/Button";
 import ProjectCard from "./ProjectCard";
-import Foot from "./Foot";
+import Foot from "../Foot/Foot";
 
 function Profile() {
   const [username, setUsername] = useState("HELLO_07");

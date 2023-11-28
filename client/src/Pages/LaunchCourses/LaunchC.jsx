@@ -1,6 +1,6 @@
 import { React } from "react";
 import { Link } from "react-router-dom";
-import Foot from "./Foot";
+import Foot from "../Foot/Foot";
 import "../Styles/LaunchC.css";
 import LaunchBlock from "./LaunchBlock";
 import NavLaunch from "./NavLaunch";

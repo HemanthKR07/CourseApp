@@ -1,10 +1,10 @@
 import "../Styles/App.css";
-import Nav from "./Nav";
+import Nav from "../Nav/Nav";
 import M1 from "./M1";
 import M2 from "./M2";
 import M3 from "./M3";
 import M4_lo from "./M4_lo";
-import Foot from "./Foot";
+import Foot from "../Foot/Foot";
 function Home() {
   // const data = fetch("http://localhost:5000/help", {
   //   method: "GET",

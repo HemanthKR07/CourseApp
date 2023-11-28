@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "../Styles/App.css";
-import Home from "./Home";
-import SignUp from "./SignUp";
-import SignIn from "./SignIn";
-import Profile from "./Profile";
-import PurchasePlus from "./PurchasePlus";
-import LaunchC from "./LaunchC";
-import Step1 from "./Step1";
-import Search from "./Search";
-import PurchasedCourses from "./PurchasedCourses";
-import MyCourses from "./MyCourses";
+import Home from "./Home/Home";
+import SignUp from "./SignUp/SignUp";
+import SignIn from "./SignIn/SignIn";
+import Profile from "./Profile/Profile";
+import PurchasePlus from "./Plus/PurchasePlus";
+import LaunchC from "./LaunchCourses/LaunchC";
+import Step1 from "./LaunchCourses/Step1";
+import Search from "./BuyCourse/Search";
+import PurchasedCourses from "./PurchasedCourses/PurchasedCourses";
+import MyCourses from "./MyCourses/MyCourses";
 
 function App() {
   const [data, setData] = useState("");

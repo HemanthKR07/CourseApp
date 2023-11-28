@@ -2,8 +2,8 @@ import { React, useState, Navigate } from "react";
 import "../Styles/SignIn.css";
 import Button from "@mui/material/Button";
 import { Link, Navigate } from "react-router-dom";
-import SignUp from "./SignUp";
-import Home from "./Home";
+import SignUp from "../SignUp/SignUp";
+import Home from "../Home/Home";
 
 function SignIn() {
   const [email, setEmail] = useState("");
