@@ -20,10 +20,9 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/signup" exact element={<SignUp />} />
+        <Route path="/" exact element={<SignIn />} />
+        <Route path="signup" element={<SignUp />} />
         <Route path="home" element={<Home />} />
-
-        <Route path="/" element={<SignIn />} />
         <Route path="profile" element={<Profile />} />
         <Route path="purchaseplus" element={<PurchasePlus />} />
         <Route path="launchcourse" element={<LaunchC />} />

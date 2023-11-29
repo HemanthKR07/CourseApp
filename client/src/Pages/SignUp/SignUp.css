@@ -177,3 +177,25 @@ body{
 #si_go{
     margin-right:20px;
 }
+
+
+.message2{
+    font-size:.34cm;
+    margin-top:-20px;
+    text-align:left;
+    margin-left:80px;
+    color:red;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight:800;
+}
+
+.message1{
+    position: absolute;
+    font-size:.38cm;
+    margin-top:8px;
+    text-align:left;
+    margin-left:95px;
+    color:red;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight:800;
+}

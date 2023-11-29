@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import "./SignUp.css";
 import Button from "@mui/material/Button";
-import { Link, Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 
 function SignUp() {
   const [name, setName] = useState("");
@@ -10,6 +10,7 @@ function SignUp() {
   const [sotp, setsotp] = useState();
   const [OTP, setOTP] = useState();
   const [isValidOTP, setIsValidOTP] = useState(false);
+  const [toSignIn, setSignIn] = useState(false);
 
   async function Createit(name, email, pass) {
     try {
@@ -22,16 +23,22 @@ function SignUp() {
           pass: pass,
         },
       });
+      const message1 = document.querySelector(".message1");
+      message1.innerHTML = " ";
       const data = await resp.json();
 
       if (resp.status == 200) {
         const fDiv = document.querySelector(".complete_su");
         const sDiv = document.querySelector(".si1");
+
         if (fDiv) {
           fDiv.classList.toggle("rem1");
           sDiv.classList.toggle("rem2");
           generateAgain(email);
         }
+      } else {
+        const message1 = document.querySelector(".message1");
+        message1.innerHTML = data.message;
       }
     } catch (err) {
       console.log(`Error1 : ${err.message}`);
@@ -41,7 +48,6 @@ function SignUp() {
   async function generateAgain(email) {
     try {
       console.log("In GenerateAgain Block");
-      console.log(email);
       const generate = await fetch("http://localhost:5000/verify", {
         method: "POST",
         headers: {
@@ -52,11 +58,17 @@ function SignUp() {
         },
       });
 
+      const message2 = document.querySelector(".message2");
+      message2.innerHTML = " ";
       const mailid = await generate.json();
 
       if (generate.status == 200) {
         setsotp(mailid.otp);
         console.log(mailid.otp);
+        message2.innerHTML = mailid.message;
+      } else {
+        // const mailid = await generate.json();
+        message2.innerHTML = mailid.message;
       }
     } catch (error) {
       console.log("Error in fetch gen req : ", error);
@@ -76,7 +88,6 @@ function SignUp() {
     console.log("sotp", sotp);
     console.log("OTP", OTP);
     if (sotp == OTP) {
-      console.log("Hello");
       setIsValidOTP(true);
 
       const create = await fetch("http://localhost:5000/createUser", {
@@ -90,14 +101,24 @@ function SignUp() {
       });
 
       const data2 = await create.json();
+      const message2 = document.querySelector(".message2");
       if (create.status == 200) {
         console.log("User created !");
       } else {
+        const data2 = await create.json();
+        message2.innerHTML = data2.message;
         console.log("Error while creating User !");
       }
     } else {
       console.log("Invalid OTP");
     }
+  }
+
+  function toSignin() {
+    setSignIn(true);
+    setTimeout(() => {
+      setSignIn(false);
+    }, 2000);
   }
   return (
     <>
@@ -142,12 +163,13 @@ function SignUp() {
             onChange={(e) => {
               setPass(e.target.value);
             }}
-            placeholder="Create Password"
+            placeholder="Enter Password"
           />
           <br />
+          <p className="message1"></p>
           <Button
             variant="contained"
-            style={{ marginTop: "18px" }}
+            style={{ marginTop: "37px" }}
             onClick={() => {
               Createit(name, email, pass);
             }}
@@ -157,10 +179,12 @@ function SignUp() {
           <br />
           <h5 id="status"></h5>
           <h6 className="su_h6">
+            {" "}
             Already have an account ?{" "}
-            <Link to="/signin">
+            <Link to="/">
               <span className="su_sp1">Sign In</span>
             </Link>
+            {/* {toSignin ? <Navigate to="/" /> : <></>} */}
           </h6>
         </div>
       </div>
@@ -200,6 +224,7 @@ function SignUp() {
           <br />
           <br />
           <div className="si_buttons">
+            {<p className="message2"> </p>}
             <Button
               id="si_go"
               variant="contained"
