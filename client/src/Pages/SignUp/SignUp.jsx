@@ -91,7 +91,7 @@ function SignUp() {
       setIsValidOTP(true);
 
       const create = await fetch("http://localhost:5000/createUser", {
-        method: "Get",
+        method: "Post",
         headers: {
           "Content-Type": "application/json",
           userName: name,

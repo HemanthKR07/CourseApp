@@ -104,29 +104,32 @@ function Step1() {
   }
 
   async function submit() {
-    try {
-      const resp = await fetch("http://localhost:5000/coursecreate", {
-        method: "Post",
-        headers: {
-          "Content-Type": "application/json",
-          id: 0,
-          title: title,
-          field: field,
-          hours: hours,
-          price: price,
-          image: image,
-        },
-      });
-
-      const data3 = await resp.json();
-      if (resp.status == 200) {
-        console.log("Course created");
-      } else {
-        console.log("Failed to create a course");
-      }
-    } catch (error) {
-      console.log("Error inncourse catch : ", error);
-    }
+    // try {
+    //   const resp = await fetch("http://localhost:5000/coursecreate", {
+    //     method: "Post",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //       email: headers.email,
+    //       pass: headers.pass,
+    //       id: 0,
+    //       title: title,
+    //       field: field,
+    //       hours: hours,
+    //       price: price,
+    //       image: image,
+    //     }),
+    //   });
+    //   const data3 = await resp.json();
+    //   if (resp.status == 200) {
+    //     console.log("Course created");
+    //   } else {
+    //     console.log("Failed to create a course");
+    //   }
+    // } catch (error) {
+    //   console.log("Error inncourse catch : ", error);
+    // }
   }
 
   return (

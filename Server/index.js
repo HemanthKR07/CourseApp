@@ -3,7 +3,7 @@ import mon from 'mongoose'
 import cors from 'cors';
 import nodemailer from 'nodemailer';
 import multer from 'multer';
-import path from 'path';
+import jwt from 'jsonwebtoken';
 
 const app = exp()
 app.use(exp.json())
@@ -25,6 +25,7 @@ const Schema1 = new mon.Schema({
 })
 
 const Schema2 = new mon.Schema({
+    userMail : String,
     id : Number,
     title : String,
     field : String,
@@ -41,6 +42,19 @@ const Model = mon.model("UserData", Schema1)
 const Courses = mon.model("Courses", Schema2)
 
 
+const userAuth = (req,res,next)=>{
+        const {email, pass} = req.headers;
+        const user = Model.find(u => u.email == email && u.pass == pass)
+
+        if (user){
+            req.user = user;
+            next();
+        } else {
+            res.status(404).json({message:"User Authentication Failed !!"})
+        }
+    }
+
+
 
 app.post('/', async (req,res)=>{
     const {email} = req.headers;
@@ -52,11 +66,13 @@ app.post('/', async (req,res)=>{
             const UserExist = await Model.findOne({email:email})
             if (UserExist){
                 console.log("User exist")
-                console.log(UserExist.pass)
-                const password = UserExist.pass
+                const password = UserExist.pass;
+                const uname = UserExist.name;
+                const user = {uname, email, password}
                 if (password == passw){
                     console.log("User exists - Signing In")
-                    res.status(200).json({message : "Success"})   
+                    const token = jwt.sign({user},Secret,{expiresIn:'1hr'})
+                    res.status(200).json({token:token,message : "Success"})   
                 } else {
                     console.log("Wrong password !")
                     res.status(401).json({message:"Wrond password"})
@@ -128,6 +144,7 @@ app.post('/signup', async (req,res)=>{
                 },
                 });
                 const numb = otp();
+                console.log(numb)
                 const mailOptions = {
                 from: {
                     name: "COURSE APP",
@@ -151,15 +168,17 @@ app.post('/signup', async (req,res)=>{
 })
 
 
-app.get('/createUser', async (req,res)=>{
+app.post('/createUser', async (req,res)=>{
     const newU = await Model.create({
-        name : req.headers["userName"],
+        name : req.headers.userName,
         email: req.headers.email,
         pass : req.headers.pass
     })
     if (newU){
-        res.status(200).json({message:"Success"})
         console.log("User created - Server")
+        const token = jwt.sign({newU},Secret,{expiresIn:'1hr'})
+        req.setHeaders("Authorization",`Bearer ${token}`)
+        res.status(200).json({token:token,message:"Success"})
     } else {
         res.status(403).json({message:"Failed"})
         console.log("Failed to create User - Server")
@@ -178,30 +197,35 @@ const upload = multer({
 })
 
 
-app.post('/coursecreate', upload.single('image1'), (req,res)=>{
-    const id = req.headers["id"];
-    const title = req.headers["title"];
-    const field = req.headers["field"];
-    const hours = req.headers["hours"];
-    const price = req.headers["price"];
-    const image = req.file.filename;
-    const resp = Courses.create({
-        id : id,
-    title : title,
-    field : field,
-    hours : hours,
-    price : price,
-    image : image,
-    launch : true,
-    buy : false
-    })
-    if (resp){
-        res.status(200).json({msg:"Success"})
-        console.log("Course created - Server")
-    } else {
-        res.status(404).json({msg:"Failed"})
-        console.log("Course wasn't created - Server")
-    }
+app.post('/coursecreate', userAuth, upload.single('image1'), (req,res)=>{
+
+    const {id,title,field,hours,price,image} = req.headers
+    const course = req.headers;
+    const user = req.user;
+
+    console.log(course)
+    console.log(user)
+    // if (user){
+    //     user.pu
+    // }
+
+    // const resp = Courses.create({
+    // id : id,
+    // title : title,
+    // field : field,
+    // hours : hours,
+    // price : price,
+    // image : image,
+    // launch : true,
+    // buy : false
+    // })
+    // if (resp){
+    //     res.status(200).json({msg:"Success"})
+    //     console.log("Course created - Server")
+    // } else {
+    //     res.status(404).json({msg:"Failed"})
+    //     console.log("Course wasn't created - Server")
+    // }
 })
 
 
