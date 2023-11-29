@@ -2,9 +2,9 @@ import React from "react";
 import "./PurchasePlus.css";
 import PurchaseNav from "./PurchaseNav";
 import Button from "@mui/material/Button";
-import img1 from "../images/p1.png";
-import img2 from "../images/1.png";
-import img3 from "../images/p3.png";
+import img1 from "../../images/p1.png";
+import img2 from "../../images/1.png";
+import img3 from "../../images/p3.png";
 
 function PurchasePlus() {
   return (

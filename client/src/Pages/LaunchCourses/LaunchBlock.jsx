@@ -1,4 +1,4 @@
-import Img1 from "../images/createcourse.jpg";
+import Img1 from "../../images/createcourse.jpg";
 
 function LaunchBlock() {
   return (

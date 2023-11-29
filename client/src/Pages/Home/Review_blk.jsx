@@ -1,5 +1,5 @@
 import React from "react";
-import "../Review_blk.css";
+import "./Review_blk.css";
 function Review_blk(props) {
   return (
     <>

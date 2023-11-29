@@ -6,8 +6,8 @@ import LaunchBlock from "./LaunchBlock";
 import NavLaunch from "./NavLaunch";
 import Button from "@mui/material/Button";
 import LaunchBlock2 from "./LaunchBlock2";
-import Img2 from "../images/createcourse2.jpg";
-import Img3 from "../images/createcourse3.jpg";
+import Img2 from "../../images/createcourse2.jpg";
+import Img3 from "../../images/createcourse3.jpg";
 function LaunchC() {
   return (
     <>
