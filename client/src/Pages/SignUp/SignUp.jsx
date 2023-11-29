@@ -2,6 +2,7 @@ import { React, useState } from "react";
 import "./SignUp.css";
 import Button from "@mui/material/Button";
 import { Navigate, Link } from "react-router-dom";
+import { setToken } from "./Token";
 
 function SignUp() {
   const [name, setName] = useState("");
@@ -11,6 +12,8 @@ function SignUp() {
   const [OTP, setOTP] = useState();
   const [isValidOTP, setIsValidOTP] = useState(false);
   const [toSignIn, setSignIn] = useState(false);
+
+  let Token;
 
   async function Createit(name, email, pass) {
     try {
@@ -67,7 +70,6 @@ function SignUp() {
         console.log(mailid.otp);
         message2.innerHTML = mailid.message;
       } else {
-        // const mailid = await generate.json();
         message2.innerHTML = mailid.message;
       }
     } catch (error) {
@@ -104,6 +106,8 @@ function SignUp() {
       const message2 = document.querySelector(".message2");
       if (create.status == 200) {
         console.log("User created !");
+        setToken(data2.token);
+        console.log(Token);
       } else {
         const data2 = await create.json();
         message2.innerHTML = data2.message;

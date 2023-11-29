@@ -1,11 +1,14 @@
 import { React, useState } from "react";
 import "./Step1.css";
+import { getToken } from "../SignUp/Token";
+
 function Step1() {
   const [field, setField] = useState("Choose a category");
   const [title, setTitle] = useState("");
   const [hours, setHours] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState();
+
   function exit() {
     window.location.href = "/home";
   }
@@ -104,32 +107,32 @@ function Step1() {
   }
 
   async function submit() {
-    // try {
-    //   const resp = await fetch("http://localhost:5000/coursecreate", {
-    //     method: "Post",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       email: headers.email,
-    //       pass: headers.pass,
-    //       id: 0,
-    //       title: title,
-    //       field: field,
-    //       hours: hours,
-    //       price: price,
-    //       image: image,
-    //     }),
-    //   });
-    //   const data3 = await resp.json();
-    //   if (resp.status == 200) {
-    //     console.log("Course created");
-    //   } else {
-    //     console.log("Failed to create a course");
-    //   }
-    // } catch (error) {
-    //   console.log("Error inncourse catch : ", error);
-    // }
+    const token = getToken();
+    try {
+      const resp = await fetch("http://localhost:5000/coursecreate", {
+        method: "Post",
+        headers: {
+          "Content-Type": "application/json",
+          token: token,
+        },
+        body: JSON.stringify({
+          id: 0,
+          title: title,
+          field: field,
+          hours: hours,
+          price: price,
+          image: image,
+        }),
+      });
+      const data3 = await resp.json();
+      if (resp.status == 200) {
+        console.log("Course created");
+      } else {
+        console.log("Failed to create a course");
+      }
+    } catch (error) {
+      console.log("Error inncourse catch : ", error);
+    }
   }
 
   return (

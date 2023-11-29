@@ -72,6 +72,7 @@ app.post('/', async (req,res)=>{
                 if (password == passw){
                     console.log("User exists - Signing In")
                     const token = jwt.sign({user},Secret,{expiresIn:'1hr'})
+                    res.setHeader("Authorization", `Bearer ${token}`)
                     res.status(200).json({token:token,message : "Success"})   
                 } else {
                     console.log("Wrong password !")
@@ -177,7 +178,8 @@ app.post('/createUser', async (req,res)=>{
     if (newU){
         console.log("User created - Server")
         const token = jwt.sign({newU},Secret,{expiresIn:'1hr'})
-        req.setHeaders("Authorization",`Bearer ${token}`)
+        res.setHeader("Authorization",`Bearer ${token}`)
+        console.log(token)
         res.status(200).json({token:token,message:"Success"})
     } else {
         res.status(403).json({message:"Failed"})
@@ -199,12 +201,15 @@ const upload = multer({
 
 app.post('/coursecreate', userAuth, upload.single('image1'), (req,res)=>{
 
-    const {id,title,field,hours,price,image} = req.headers
-    const course = req.headers;
-    const user = req.user;
+    // const {id,title,field,hours,price,image} = req.headers
+    // const course = req.headers;
+    // const user = req.user;
 
-    console.log(course)
-    console.log(user)
+    console.log(res.header.Authorization)
+
+
+    // console.log(course)
+    // console.log(user)
     // if (user){
     //     user.pu
     // }
