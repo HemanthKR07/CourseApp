@@ -47,29 +47,48 @@ app.post('/', async (req,res)=>{
     const passw = req.headers["pass"]
 
     // console.log(email,passw);
-    try {
-        const UserExist = await Model.findOne({email:email})
-        if (UserExist){
-            console.log("User exist")
-            console.log(UserExist.pass)
-            const password = UserExist.pass
-            if (password == passw){
-                console.log("User exists - Signing In")
-                res.status(200).json({message : "Success", comp:"Home"})   
+    if (email.includes("@")){
+        try {
+            const UserExist = await Model.findOne({email:email})
+            if (UserExist){
+                console.log("User exist")
+                console.log(UserExist.pass)
+                const password = UserExist.pass
+                if (password == passw){
+                    console.log("User exists - Signing In")
+                    res.status(200).json({message : "Success"})   
+                } else {
+                    console.log("Wrong password !")
+                    res.status(401).json({message:"Wrond password"})
+                }
             } else {
-                console.log("Wrong password !")
-                res.status(401).json({message:"Wrond password", comp:"Wrong password"})
+                    console.log("User doesn't exist - Rendering Sign up page")
+                    res.status(404).json({message:"User Doesn't exist"})
+                }
+        } catch (error) {
+                        console.log(error)
+                        res.status(500).json("Internal error ")   
             }
-        } else {
-                console.log("User doesn't exist - Rendering Sign up page")
-                res.status(404).json({message:"User Doesn't exist", comp:"SignUp"})
-            }
-    } catch (error) {
-                    console.log(error)
-                    res.status(500).json("Internal error ")   
-        }
-    })
+    } else {
+        res.status(400).json({message:"Invalid Email"})
+    }
+})
 
+app.post('/resetpass', async (req,res)=>{
+    const {email} = req.headers;
+    if (email.includes("@")){
+        try {
+            const UserExist = await Model.findOne({email:email})
+            if (UserExist){
+                res.status(200).json({message : "Success"})
+            } else {
+                res.status(404).json({message:"User not found"})
+            }
+        } catch(error){
+                console.log("Error in reset pass  : ", error)
+        }
+    }
+})
 
 // This api is used to check is there's any user with that mail id.
 app.post('/signup', async (req,res)=>{

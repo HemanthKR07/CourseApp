@@ -77,3 +77,47 @@ body{
 .si_sp1:hover{
     text-decoration:underline;
 }
+
+.message{
+    position: absolute;
+    color:red;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight:900;
+    font-size:.36cm;
+    text-align:left;
+    margin-left:82px;
+    margin-top:3px;
+}
+
+.fp{
+    color:rgb(35, 35, 122);
+    font-size:.45cm;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    cursor:pointer;
+    margin-top:35px;
+    background-color:white;
+    border:none;
+}
+
+.fp:hover{
+    text-decoration:underline;
+}
+
+.rm{
+    display: none;
+}
+/* 
+.remove{
+    display:none;
+} */
+.forgotpass{
+    height:320px;
+    background-color:rgb(255, 255, 255);
+    width:430px;
+    margin-left:405px;
+    border:1px solid white;
+    border-radius:5px;
+    margin-top:20px;
+    display:none;
+}
+
