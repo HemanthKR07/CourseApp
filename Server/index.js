@@ -22,6 +22,7 @@ const Schema1 = new mon.Schema({
     name : String,
     email : String,
     pass : String,
+    Courses : []
 })
 
 const Schema2 = new mon.Schema({
@@ -43,17 +44,13 @@ const Courses = mon.model("Courses", Schema2)
 
 
 const userAuth = (req,res,next)=>{
-        // const {email, pass} = req.headers;
-        // const user = Model.find(u => u.email == email && u.pass == pass)
-
-        // if (user){
-        //     req.user = user;
-        //     next();
-        // } else {
-        //     res.status(404).json({message:"User Authentication Failed !!"})
-        // }
-
-        const token = req.headers.token
+        const token = req.headers.token;
+        const user = jwt.verify(token,Secret);
+        console.log(user)
+        if (user){
+            req.user = user
+            next();
+        }
     }
 
 
@@ -201,38 +198,28 @@ const upload = multer({
 })
 
 
-app.post('/coursecreate', userAuth, upload.single('image1'), (req,res)=>{
+app.post('/coursecreate', userAuth,(req,res)=>{
 
-    // const {id,title,field,hours,price,image} = req.headers
-    // const course = req.headers;
-    // const user = req.user;
+    const {id,title,field,hours,price} = req.body;
+    const user = 
 
-    console.log(res.header.Authorization)
-
-
-    // console.log(course)
+    console.log(title,field,hours,price)
     // console.log(user)
-    // if (user){
-    //     user.pu
-    // }
 
-    // const resp = Courses.create({
-    // id : id,
-    // title : title,
-    // field : field,
-    // hours : hours,
-    // price : price,
-    // image : image,
-    // launch : true,
-    // buy : false
-    // })
-    // if (resp){
-    //     res.status(200).json({msg:"Success"})
-    //     console.log("Course created - Server")
-    // } else {
-    //     res.status(404).json({msg:"Failed"})
-    //     console.log("Course wasn't created - Server")
-    // }
+    const resp = {
+    title : title,
+    field : field,
+    hours : hours,
+    price : price,
+    }
+    const userdata = user.Courses.push(resp)
+    if (userdata){
+        res.status(200).json({msg:"Success"})
+        console.log("Course created - Server")
+    } else {
+        res.status(404).json({msg:"Failed"})
+        console.log("Course wasn't created - Server")
+    }
 })
 
 

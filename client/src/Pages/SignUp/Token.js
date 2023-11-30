@@ -1,4 +1,4 @@
-let authToken = null;
+let authToken;
 
 function setToken(token){
     authToken = token

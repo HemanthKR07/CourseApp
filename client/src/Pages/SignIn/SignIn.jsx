@@ -2,6 +2,7 @@ import { React, useState } from "react";
 import { Navigate } from "react-router-dom";
 import "./SignIn.css";
 import Button from "@mui/material/Button";
+import { setToken, getToken } from "../SignUp/Token";
 
 function SignIn() {
   const [email, setEmail] = useState("");
@@ -24,6 +25,9 @@ function SignIn() {
 
     if (login.status == 200) {
       setUserExists(true);
+      console.log("Token : ", response.token);
+      setToken(response.token);
+      console.log("GetToken : ", getToken());
     } else {
       if (login.status == 401) {
         message.innerHTML = response.message;
