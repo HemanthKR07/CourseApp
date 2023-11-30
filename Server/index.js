@@ -227,32 +227,6 @@ app.post('/coursecreate', userAuth,async (req,res)=>{
 })
 
 
-    // if (UserExist){
-    //     const token = jwt.sign({email,pass},Secret, {expiresIn:'1h'});
-    //     console.log("User logged in")
-    //     console.log(token)
-    //     res.setHeader('Authorization', `Bearer ${token}`)
-
-        // if (typeof(Storage) !== 'undefined'){
-        //     localStorage.setItem("Token", token)
-        //     console.log("Data saved in storage")
-// } else {
-//     console.log("Your browser doesnt support LocalStorage")
-// }
-
-//         res.status(200).json({message:"Success"})
-//     } else {
-//         res.status(403).json({message: "Invalid credentials !"})
-//         console.log("Invalid User credentials !")
-//     } 
-// })
-
-// app.get('/', UserAuthentication, (req,res)=>{
-        
-// })
-
-
-
 // app.get('/getcourses', authentication, (req,res)=>{
 //         console.log("Render everthing");
         

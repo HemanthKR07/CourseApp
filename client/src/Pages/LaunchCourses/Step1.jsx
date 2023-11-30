@@ -286,7 +286,7 @@ function Step1() {
               Previous
             </button>
             <button className="s_b3 sb" onClick={submit}>
-              Next
+              Create
             </button>
           </div>
         </div>
