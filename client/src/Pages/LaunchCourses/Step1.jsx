@@ -109,6 +109,7 @@ function Step1() {
   async function submit() {
     const token = getToken();
     try {
+      console.log(token);
       const resp = await fetch("http://localhost:5000/coursecreate", {
         method: "Post",
         headers: {

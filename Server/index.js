@@ -43,15 +43,17 @@ const Courses = mon.model("Courses", Schema2)
 
 
 const userAuth = (req,res,next)=>{
-        const {email, pass} = req.headers;
-        const user = Model.find(u => u.email == email && u.pass == pass)
+        // const {email, pass} = req.headers;
+        // const user = Model.find(u => u.email == email && u.pass == pass)
 
-        if (user){
-            req.user = user;
-            next();
-        } else {
-            res.status(404).json({message:"User Authentication Failed !!"})
-        }
+        // if (user){
+        //     req.user = user;
+        //     next();
+        // } else {
+        //     res.status(404).json({message:"User Authentication Failed !!"})
+        // }
+
+        const token = req.headers.token
     }
 
 

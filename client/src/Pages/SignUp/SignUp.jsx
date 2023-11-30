@@ -2,7 +2,7 @@ import { React, useState } from "react";
 import "./SignUp.css";
 import Button from "@mui/material/Button";
 import { Navigate, Link } from "react-router-dom";
-import { setToken } from "./Token";
+import { setToken, getToken } from "./Token";
 
 function SignUp() {
   const [name, setName] = useState("");
@@ -107,7 +107,7 @@ function SignUp() {
       if (create.status == 200) {
         console.log("User created !");
         setToken(data2.token);
-        console.log(Token);
+        console.log(getToken());
       } else {
         const data2 = await create.json();
         message2.innerHTML = data2.message;
