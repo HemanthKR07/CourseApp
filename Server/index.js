@@ -46,9 +46,10 @@ const Courses = mon.model("Courses", Schema2)
 const userAuth = (req,res,next)=>{
         const token = req.headers.token;
         const user = jwt.verify(token,Secret);
-        console.log(user)
+        // console.log(user)
         if (user){
-            req.user = user
+            req.user = user;
+            // console.log(req.user.user.email)
             next();
         }
     }
@@ -198,27 +199,30 @@ const upload = multer({
 })
 
 
-app.post('/coursecreate', userAuth,(req,res)=>{
+app.post('/coursecreate', userAuth,async (req,res)=>{
 
-    const {id,title,field,hours,price} = req.body;
-    const user = 
+    const {title,field,hours,price} = req.body;
+    const user = req.user.user;
+    const actualuser = await Model.findOne({email : user.email})
 
-    console.log(title,field,hours,price)
-    // console.log(user)
+    if (actualuser){
+        const resp = {
+            title : title,
+            field : field,
+            hours : hours,
+            price : price,
+            }
 
-    const resp = {
-    title : title,
-    field : field,
-    hours : hours,
-    price : price,
-    }
-    const userdata = user.Courses.push(resp)
-    if (userdata){
-        res.status(200).json({msg:"Success"})
-        console.log("Course created - Server")
-    } else {
-        res.status(404).json({msg:"Failed"})
-        console.log("Course wasn't created - Server")
+            const courseStatus = actualuser.Courses.push(resp)
+            await actualuser.save()
+            console.log("Updated")
+            if (courseStatus){
+                res.status(200).json({msg:"Success"})
+                console.log("Course created - Server")
+            } else {
+                res.status(404).json({msg:"Failed"})
+                console.log("Course wasn't created - Server")
+            }
     }
 })
 
