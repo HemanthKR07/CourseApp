@@ -26,18 +26,7 @@ const Schema1 = new mon.Schema({
 })
 
 const Schema2 = new mon.Schema({
-    userMail : String,
-    id : Number,
-    title : String,
-    field : String,
-    hours : Number,
-    price : Number,
-    image : {
-        data:Buffer,
-        contentType:String
-    },
-    launch : Boolean,
-    buy : Boolean
+    list:[]
 })
 const Model = mon.model("UserData", Schema1)
 const Courses = mon.model("Courses", Schema2)
@@ -45,12 +34,17 @@ const Courses = mon.model("Courses", Schema2)
 
 const userAuth = (req,res,next)=>{
         const token = req.headers.token;
-        const user = jwt.verify(token,Secret);
-        // console.log(user)
-        if (user){
-            req.user = user;
-            // console.log(req.user.user.email)
-            next();
+        
+        try {
+            const user = jwt.verify(token,Secret);
+            if (user){
+                req.user = user;
+                next();
+            } else {
+                res.send("Authication failed :(")
+            }
+        } catch (error) {
+            console.log("ERROR in catch :", error)
         }
     }
 
@@ -216,7 +210,12 @@ app.post('/coursecreate', userAuth, upload.single("image1"),async (req,res)=>{
             }
 
             const courseStatus = actualuser.Courses.push(resp)
+            // const coursesA = Courses.push(resp);
             await actualuser.save()
+            
+            // if (coursesA){
+            //     console.log("Pushed to Coursesarray :)")
+            // }
             console.log("Updated")
             if (courseStatus){
                 res.status(200).json({msg:"Success"})

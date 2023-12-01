@@ -1,5 +1,30 @@
 import { Link } from "react-router-dom";
+import { getToken } from "../SignUp/Token";
+
 function MyCourses() {
+  async function getCourses() {
+    const token = getToken();
+    const array = await fetch("http://localhost:5000/getCourses", {
+      method: "Get",
+      headers: {
+        "Content-Type": "application/json",
+        token: token,
+      },
+    });
+
+    const status = await array.json();
+
+    if (array.ok) {
+      const c = status.course.map(
+        (c) => c.title,
+        c.price,
+        c.hours,
+        c.field,
+        c.img
+      );
+    }
+  }
+
   return (
     <>
       <style>
@@ -44,7 +69,7 @@ function MyCourses() {
           </Link>
           <h3 className="pc_h3">My Courses</h3>
         </div>
-        <div className="pc_body">Shiva-gami</div>
+        <div className="pc_body"></div>
       </div>
     </>
   );
