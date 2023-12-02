@@ -182,7 +182,7 @@ app.post('/createUser', async (req,res)=>{
 })
     
 const storage = multer.diskStorage({
-    destination : 'src/CourseImagesL',
+    destination : '../client/src/CourseImagesL',
     filename: (req, file, cb)=>{
             cb(null, file.originalname)
     }
@@ -193,7 +193,7 @@ const upload = multer({
 })
 
 
-app.post('/coursecreate', userAuth, upload.single("image1"),async (req,res)=>{
+app.post('/coursecreate', userAuth, upload.single("image"),async (req,res)=>{
 
     const {title,field,hours,price} = req.body;
     const img = req.file ? req.file.filename : 'default_filename.jpg';
